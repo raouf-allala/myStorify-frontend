@@ -49,26 +49,32 @@ const Home = () => {
       const id = user.id;
       console.log(id);
       axios
-        .get(`http://localhost:3000/api/users/dash/admin/${id}`)
+        .get(
+          `https://mystorify-api.cyclic.app/api/users/dash/admin/${id}`
+        )
         .then((res) => {
           console.log(res.data);
           dispatch(authUpdate(res.data));
         });
     }
-    axios.get('http://localhost:3000/api/produits').then((res) => {
-      setRandomProducts(res.data);
-    });
-    axios.get('http://localhost:3000/api/categories').then((res) => {
-      console.log(res.data);
-      setCategories(res.data);
-    });
     axios
-      .get('http://localhost:3000/api/produits/discounts')
+      .get('https://mystorify-api.cyclic.app/api/produits')
+      .then((res) => {
+        setRandomProducts(res.data);
+      });
+    axios
+      .get('https://mystorify-api.cyclic.app/api/categories')
+      .then((res) => {
+        console.log(res.data);
+        setCategories(res.data);
+      });
+    axios
+      .get('https://mystorify-api.cyclic.app/api/produits/discounts')
       .then((res) => {
         setDiscounts(res.data);
       });
     axios
-      .get('http://localhost:3000/api/produits/top')
+      .get('https://mystorify-api.cyclic.app/api/produits/top')
       .then((res) => {
         setTopProducts(res.data);
       });
