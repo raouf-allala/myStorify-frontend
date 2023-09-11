@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { useState, useRef, useEffect } from 'react';
-import { useOutletContext, useNavigate, useParams } from 'react-router-dom';
+import {
+  useOutletContext,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 const CommandeDetails = () => {
   const { magasin } = useOutletContext();
   const { commandeId } = useParams();
@@ -10,7 +14,7 @@ const CommandeDetails = () => {
   useEffect(() => {
     const id = commandeId;
     axios
-      .get(`http://localhost:3000/api/achat/${id}`, {
+      .get(`https://mystorify-api.cyclic.app/api/achat/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -22,15 +26,15 @@ const CommandeDetails = () => {
       });
   }, []);
   return (
-    <div className='dash-content'>
+    <div className="dash-content">
       <h2>Consulter le details de cette commande</h2>
-      <div className='form-flex'>
+      <div className="form-flex">
         <div>
           <h3>Le produit</h3>
           <div style={{ display: 'flex', gap: '.5em' }}>
             <img
               src={commande?.produit?.images[0]?.image_url}
-              alt=''
+              alt=""
               style={{
                 width: '60px',
                 height: '60px',
@@ -44,7 +48,10 @@ const CommandeDetails = () => {
                 paddingBlock: '.5em',
               }}
             >
-              <h4 style={{ color: '#3B4C68' }}> {commande?.produit?.nom}</h4>
+              <h4 style={{ color: '#3B4C68' }}>
+                {' '}
+                {commande?.produit?.nom}
+              </h4>
               <h4 style={{ color: '#3B4C68' }}>
                 {' '}
                 Le prix : {commande?.produit?.prix} DA
@@ -82,7 +89,9 @@ const CommandeDetails = () => {
       <div style={{ color: '#3B4C68' }}>
         <p style={{ marginBottom: '.5em' }}>
           Quantity :{' '}
-          <span style={{ fontWeight: '500' }}>{commande?.quantity}</span>
+          <span style={{ fontWeight: '500' }}>
+            {commande?.quantity}
+          </span>
         </p>
         <p style={{ marginBottom: '.5em' }}>
           Total :{' '}
@@ -91,11 +100,12 @@ const CommandeDetails = () => {
           </span>
         </p>
         <p>
-          Etat : <span style={{ fontWeight: '500' }}>{commande?.etat}</span>
+          Etat :{' '}
+          <span style={{ fontWeight: '500' }}>{commande?.etat}</span>
         </p>
       </div>
       <div
-        className='btns'
+        className="btns"
         style={{
           display: 'flex',
           justifyContent: 'flex-end',
@@ -103,7 +113,7 @@ const CommandeDetails = () => {
         }}
       >
         <button
-          className='btn'
+          className="btn"
           onClick={() => {
             navigate(`/dashboard/magasin/${magasin.id}/commandes`);
           }}

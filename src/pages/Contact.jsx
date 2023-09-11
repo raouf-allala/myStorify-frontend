@@ -65,7 +65,7 @@ const Contact = () => {
   };
   const handleSubmit = () => {
     axios
-      .post('http://localhost:3000/api/users/contactUs', {
+      .post('https://mystorify-api.cyclic.app/api/users/contactUs', {
         nom,
         desc,
       })

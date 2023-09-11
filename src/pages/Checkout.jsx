@@ -60,7 +60,7 @@ const Checkout = () => {
       console.log(commande_produits);
       axios
         .post(
-          'http://localhost:3000/api/achat',
+          'https://mystorify-api.cyclic.app/api/achat',
           {
             totale: totale,
             methode_paiement: methode,

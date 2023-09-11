@@ -3,7 +3,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState, useRef, useEffect, memo } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { RxCross1 } from 'react-icons/rx';
-import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import {
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import { TiStarFullOutline } from 'react-icons/ti';
 import Dialog from '../components/Dialog';
@@ -46,7 +50,9 @@ const AdminEditProduct = () => {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/produits/${productId}`)
+      .get(
+        `https://mystorify-api.cyclic.app/api/produits/${productId}`
+      )
       .then((res) => {
         console.log(res.data);
         setProduct(res.data);
@@ -56,10 +62,14 @@ const AdminEditProduct = () => {
         setQuantity(res.data.quantity);
 
         setDate(res.data.createdAt?.split('T'));
-        if (res.data.images[0]) setImage1(res.data.images[0].image_url);
-        if (res.data.images[1]) setImage2(res.data.images[1].image_url);
-        if (res.data.images[2]) setImage3(res.data.images[2].image_url);
-        if (res.data.images[3]) setImage4(res.data.images[3].image_url);
+        if (res.data.images[0])
+          setImage1(res.data.images[0].image_url);
+        if (res.data.images[1])
+          setImage2(res.data.images[1].image_url);
+        if (res.data.images[2])
+          setImage3(res.data.images[2].image_url);
+        if (res.data.images[3])
+          setImage4(res.data.images[3].image_url);
       })
       .catch((err) => {
         console.log(err);
@@ -68,7 +78,9 @@ const AdminEditProduct = () => {
   useEffect(() => {
     if (deletedProduct === true) {
       axios
-        .delete(`http://localhost:3000/api/produits/${product.id}`)
+        .delete(
+          `https://mystorify-api.cyclic.app/api/produits/${product.id}`
+        )
         .then((res) => {
           console.log(res);
           navigate('/dashboard/admin/products');
@@ -214,7 +226,10 @@ const AdminEditProduct = () => {
     };
 
     axios
-      .post(`http://localhost:3000/api/produits/update/${productId}`, produit)
+      .post(
+        `https://mystorify-api.cyclic.app/api/produits/update/${productId}`,
+        produit
+      )
       .then((res) => {
         console.log(res);
         navigate(`/dashboard/admin/products`);
@@ -227,31 +242,32 @@ const AdminEditProduct = () => {
   };
 
   return (
-    <div className='dash-content'>
-      <div className='head'>
+    <div className="dash-content">
+      <div className="head">
         <h2>Voir et modifier le details de ce produit</h2>
         <div
-          className='form-flex'
+          className="form-flex"
           style={{
             justifyContent: 'space-between',
           }}
         >
           <p>
-            Ce produit a été ajouté le {date[0]} à {date[1]?.substring(0, 8)}
+            Ce produit a été ajouté le {date[0]} à{' '}
+            {date[1]?.substring(0, 8)}
           </p>
           <p>
             {product?.Review && (
               <div
-                className='stars-wrapper'
+                className="stars-wrapper"
                 style={{ display: 'flex', alignItems: 'center' }}
               >
                 {[...Array(Math.floor(calcAvg()))].map((x, i) => (
-                  <TiStarFullOutline className='star' />
+                  <TiStarFullOutline className="star" />
                 ))}
                 {[...Array(5 - Math.floor(calcAvg()))].map((x, i) => (
-                  <TiStarFullOutline className='star unfilled' />
+                  <TiStarFullOutline className="star unfilled" />
                 ))}
-                <small className='product-card__rating-count'>
+                <small className="product-card__rating-count">
                   ({product.Review.length})
                 </small>
               </div>
@@ -259,19 +275,19 @@ const AdminEditProduct = () => {
           </p>
         </div>
       </div>
-      <div className='edit-profile'>
+      <div className="edit-profile">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleSubmit();
           }}
         >
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
               <label>Nom du produit </label>
               <input
-                id='nom'
-                type='text'
+                id="nom"
+                type="text"
                 value={nom}
                 onChange={(e) => {
                   setNom(e.target.value);
@@ -280,11 +296,11 @@ const AdminEditProduct = () => {
               />
             </div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
               <label>Description </label>
               <textarea
-                id='desc'
+                id="desc"
                 value={desc}
                 onChange={(e) => {
                   setDesc(e.target.value);
@@ -294,11 +310,11 @@ const AdminEditProduct = () => {
               ></textarea>
             </div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
               <label>Prix </label>
               <input
-                id='prix'
+                id="prix"
                 value={prix}
                 onChange={(e) => {
                   setPrix(e.target.value);
@@ -309,9 +325,9 @@ const AdminEditProduct = () => {
             <div>
               <label>Quantité </label>
               <input
-                id='quantity'
+                id="quantity"
                 value={quantity}
-                type='text'
+                type="text"
                 onChange={(e) => {
                   setQuantity(e.target.value);
                   handleErr(e);
@@ -319,7 +335,7 @@ const AdminEditProduct = () => {
               />
             </div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div style={{ color: '#3B4C68' }}>
               <p style={{ marginBottom: '1em' }}>
                 La magasin de ce produit :{' '}
@@ -333,96 +349,103 @@ const AdminEditProduct = () => {
               </p>
               <p>
                 La catégorie de ce produit :{' '}
-                <span style={{ fontWeight: '500' }}>{categorieNom}</span>
+                <span style={{ fontWeight: '500' }}>
+                  {categorieNom}
+                </span>
               </p>
             </div>
             <div></div>
           </div>
 
-          <div className='add-product-images' style={{ marginBottom: '1.5em' }}>
+          <div
+            className="add-product-images"
+            style={{ marginBottom: '1.5em' }}
+          >
             <label>Images </label>
             {err && (
-              <p className='err' style={{ marginTop: '.5em' }}>
+              <p className="err" style={{ marginTop: '.5em' }}>
                 Insérer au minimum une photo !
               </p>
             )}
             <div
-              className='add-product-images-container'
+              className="add-product-images-container"
               style={{ marginTop: '1em' }}
             >
               {image1 && (
-                <div className='add-product-image'>
-                  <div className='add-product-image-preview'>
-                    <img src={image1} alt='Product Image' />
+                <div className="add-product-image">
+                  <div className="add-product-image-preview">
+                    <img src={image1} alt="Product Image" />
                     <button
-                      className='add-product-image-delete'
+                      className="add-product-image-delete"
                       onClick={() => {
                         setImage1('');
                       }}
                     >
-                      <RxCross1 className='icon' size={17} />
+                      <RxCross1 className="icon" size={17} />
                     </button>
                   </div>
                 </div>
               )}
               {image2 && (
-                <div className='add-product-image'>
-                  <div className='add-product-image-preview'>
-                    <img src={image2} alt='Product Image' />
+                <div className="add-product-image">
+                  <div className="add-product-image-preview">
+                    <img src={image2} alt="Product Image" />
                     <button
-                      className='add-product-image-delete'
+                      className="add-product-image-delete"
                       onClick={() => {
                         setImage2('');
                       }}
                     >
-                      <RxCross1 className='icon' size={17} />
+                      <RxCross1 className="icon" size={17} />
                     </button>
                   </div>
                 </div>
               )}
               {image3 && (
-                <div className='add-product-image'>
-                  <div className='add-product-image-preview'>
-                    <img src={image3} alt='Product Image' />
+                <div className="add-product-image">
+                  <div className="add-product-image-preview">
+                    <img src={image3} alt="Product Image" />
                     <button
-                      className='add-product-image-delete'
+                      className="add-product-image-delete"
                       onClick={() => {
                         setImage3('');
                       }}
                     >
-                      <RxCross1 className='icon' size={17} />
+                      <RxCross1 className="icon" size={17} />
                     </button>
                   </div>
                 </div>
               )}
               {image4 && (
-                <div className='add-product-image'>
-                  <div className='add-product-image-preview'>
-                    <img src={image4} alt='Product Image' />
+                <div className="add-product-image">
+                  <div className="add-product-image-preview">
+                    <img src={image4} alt="Product Image" />
                     <button
-                      className='add-product-image-delete'
+                      className="add-product-image-delete"
                       onClick={() => {
                         setImage4('');
                       }}
                     >
-                      <RxCross1 className='icon' size={17} />
+                      <RxCross1 className="icon" size={17} />
                     </button>
                   </div>
                 </div>
               )}
               {!image1 && (
-                <div className='add-product-image'>
+                <div className="add-product-image">
                   <div
-                    className='add-product-image-overlay'
+                    className="add-product-image-overlay"
                     onClick={() => {
                       inputRef.current.click();
                     }}
                   >
-                    <span className='add-product-image-overlay-icon'>+</span>
+                    <span className="add-product-image-overlay-icon">
+                      +
+                    </span>
                   </div>
                   <input
-                    type='file'
-                    accept='image/*'
+                    type="file"
+                    accept="image/*"
                     ref={inputRef}
                     style={{ display: 'none' }}
                     onChange={handleImage1Upload}
@@ -430,18 +453,20 @@ const AdminEditProduct = () => {
                 </div>
               )}
               {image1 && !image2 && (
-                <div className='add-product-image'>
+                <div className="add-product-image">
                   <div
-                    className='add-product-image-overlay'
+                    className="add-product-image-overlay"
                     onClick={() => {
                       inputRef.current.click();
                     }}
                   >
-                    <span className='add-product-image-overlay-icon'>+</span>
+                    <span className="add-product-image-overlay-icon">
+                      +
+                    </span>
                   </div>
                   <input
-                    type='file'
-                    accept='image/*'
+                    type="file"
+                    accept="image/*"
                     ref={inputRef}
                     style={{ display: 'none' }}
                     onChange={handleImage2Upload}
@@ -449,18 +474,20 @@ const AdminEditProduct = () => {
                 </div>
               )}
               {image2 && !image3 && (
-                <div className='add-product-image'>
+                <div className="add-product-image">
                   <div
-                    className='add-product-image-overlay'
+                    className="add-product-image-overlay"
                     onClick={() => {
                       inputRef.current.click();
                     }}
                   >
-                    <span className='add-product-image-overlay-icon'>+</span>
+                    <span className="add-product-image-overlay-icon">
+                      +
+                    </span>
                   </div>
                   <input
-                    type='file'
-                    accept='image/*'
+                    type="file"
+                    accept="image/*"
                     ref={inputRef}
                     style={{ display: 'none' }}
                     onChange={handleImage3Upload}
@@ -468,18 +495,20 @@ const AdminEditProduct = () => {
                 </div>
               )}
               {image3 && !image4 && (
-                <div className='add-product-image'>
+                <div className="add-product-image">
                   <div
-                    className='add-product-image-overlay'
+                    className="add-product-image-overlay"
                     onClick={() => {
                       inputRef.current.click();
                     }}
                   >
-                    <span className='add-product-image-overlay-icon'>+</span>
+                    <span className="add-product-image-overlay-icon">
+                      +
+                    </span>
                   </div>
                   <input
-                    type='file'
-                    accept='image/*'
+                    type="file"
+                    accept="image/*"
                     ref={inputRef}
                     style={{ display: 'none' }}
                     onChange={handleImage4Upload}
@@ -489,14 +518,14 @@ const AdminEditProduct = () => {
             </div>
           </div>
           <div
-            className='btns'
+            className="btns"
             style={{
               display: 'flex',
               justifyContent: 'space-between',
             }}
           >
             <button
-              className='btn'
+              className="btn"
               style={{
                 backgroundColor: 'red',
                 display: 'flex',
@@ -517,13 +546,13 @@ const AdminEditProduct = () => {
                   e.preventDefault();
                   handleReset();
                 }}
-                className='btn btn-sec'
+                className="btn btn-sec"
               >
                 Réinitialiser
               </button>
               {!isLoading ? (
                 <button
-                  className='btn'
+                  className="btn"
                   onClick={(e) => {
                     handleOnSubmit(e);
                     console.log(err);
@@ -539,7 +568,7 @@ const AdminEditProduct = () => {
                   onClick={(e) => {
                     e.preventDefault();
                   }}
-                  className='btn'
+                  className="btn"
                 >
                   <Spinner />
                 </button>
@@ -549,7 +578,7 @@ const AdminEditProduct = () => {
         </form>
         {dialogProduct && (
           <Dialog
-            text1='Est ce que vous-avez sur ?'
+            text1="Est ce que vous-avez sur ?"
             setDialogProduct={setDialogProduct}
             setDeletedProduct={setDeletedProduct}
           />

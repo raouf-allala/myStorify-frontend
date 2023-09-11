@@ -39,7 +39,7 @@ const DashMagasinSides = () => {
     } else {
       axios
         .get(
-          `http://localhost:3000/api/magasins/user/valide/${magasinId}`,
+          `https://mystorify-api.cyclic.app/api/magasins/user/valide/${magasinId}`,
           {
             withCredentials: true,
           }
@@ -60,7 +60,9 @@ const DashMagasinSides = () => {
         });
     }
     axios
-      .get(`http://localhost:3000/api/produits/dashTop/${magasinId}`)
+      .get(
+        `https://mystorify-api.cyclic.app/api/produits/dashTop/${magasinId}`
+      )
       .then((res) => {
         console.log(res.data);
         setTotalCommande(0);

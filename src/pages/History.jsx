@@ -12,7 +12,9 @@ const History = () => {
   const user = useSelector((state) => state.auth.user);
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/achat/user/${user.id}`)
+      .get(
+        `https://mystorify-api.cyclic.app/api/achat/user/${user.id}`
+      )
       .then((res) => {
         console.log(res.data);
         setCommandes(res.data);

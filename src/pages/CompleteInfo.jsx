@@ -15,7 +15,11 @@ const CompleteInfo = () => {
   const phoneExp = /^[0-9]{9,10}$/;
   const [validPhone, setValidPhone] = useState(true);
   const [err, setErr] = useState('');
-  const [empty, setEmpty] = useState(['telephone', 'adresse', 'wilaya']);
+  const [empty, setEmpty] = useState([
+    'telephone',
+    'adresse',
+    'wilaya',
+  ]);
 
   const handleErr = (e) => {
     if (e.target.value.trim() === '') {
@@ -43,7 +47,7 @@ const CompleteInfo = () => {
   const handleUpdate = () => {
     axios
       .post(
-        'http://localhost:3000/api/users/completeInfo',
+        'https://mystorify-api.cyclic.app/api/users/completeInfo',
         { email, telephone, adresse, wilaya },
         {
           withCredentials: true,
@@ -61,21 +65,21 @@ const CompleteInfo = () => {
   };
   return (
     <main>
-      <div className='container'>
-        <div className='login-flex'>
-          <div className='left'>
-            <img src={Picture} alt='' />
+      <div className="container">
+        <div className="login-flex">
+          <div className="left">
+            <img src={Picture} alt="" />
           </div>
-          <div className='right'>
-            <form className='right-content'>
+          <div className="right">
+            <form className="right-content">
               <h1>Se connecter à Exclusive</h1>
               <p>Completer vos information ci-dessous</p>
               <>
                 <input
-                  id='telephone'
-                  placeholder='Telephone'
-                  type='text'
-                  className='login-input'
+                  id="telephone"
+                  placeholder="Telephone"
+                  type="text"
+                  className="login-input"
                   value={telephone}
                   onChange={(e) => {
                     setTelephone(e.target.value);
@@ -84,27 +88,29 @@ const CompleteInfo = () => {
                   onFocus={() => setValidPhone(true)}
                 />
                 {!validPhone ? (
-                  <p className='err'>Ce numéro de telephone est invalide !</p>
+                  <p className="err">
+                    Ce numéro de telephone est invalide !
+                  </p>
                 ) : (
                   ''
                 )}
                 <input
-                  id='adresse'
-                  placeholder='Adresse'
-                  type='text'
+                  id="adresse"
+                  placeholder="Adresse"
+                  type="text"
                   value={adresse}
-                  className='login-input'
+                  className="login-input"
                   onChange={(e) => {
                     setAdresse(e.target.value);
                     handleErr(e);
                   }}
                 />
                 <input
-                  id='wilaya'
-                  placeholder='Wilaya'
-                  type='text'
+                  id="wilaya"
+                  placeholder="Wilaya"
+                  type="text"
                   value={wilaya}
-                  className='login-input'
+                  className="login-input"
                   onChange={(e) => {
                     setWilaya(e.target.value);
                     handleErr(e);
@@ -113,7 +119,7 @@ const CompleteInfo = () => {
               </>
 
               <button
-                className='btn'
+                className="btn"
                 onClick={(e) => {
                   handleOnSubmit(e);
                   if (empty.length === 0 && phoneExp.test(telephone))
@@ -131,7 +137,7 @@ const CompleteInfo = () => {
                       textDecoration: 'underline',
                       fontWeight: 500,
                     }}
-                    to='/inscrire'
+                    to="/inscrire"
                   >
                     Inscrivez-vous
                   </Link>

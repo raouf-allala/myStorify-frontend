@@ -49,12 +49,14 @@ const SecurityProfile = () => {
     });
   };
   const handleSubmit = () => {
-    if (newPassword.current.value !== confirmNewPassword.current.value) {
+    if (
+      newPassword.current.value !== confirmNewPassword.current.value
+    ) {
       setErr('Reconfimer votre nouveau mot de passe !');
     } else {
       axios
         .patch(
-          'http://localhost:3000/api/users/password',
+          'https://mystorify-api.cyclic.app/api/users/password',
           {
             oldPassword: currentPassword?.current?.value,
             newPassword: newPassword.current.value,
@@ -71,7 +73,7 @@ const SecurityProfile = () => {
     }
   };
   return (
-    <div className='right'>
+    <div className="right">
       {!done ? (
         <>
           <h2>Sécurité Du Profile</h2>
@@ -79,47 +81,49 @@ const SecurityProfile = () => {
             Modifier Mot De Passe:
           </h3>
           {err && (
-            <p className='err' style={{ marginBottom: '.5em' }}>
+            <p className="err" style={{ marginBottom: '.5em' }}>
               {err}
             </p>
           )}
           {user?.password !== 'null' ? (
             <form>
               <div>
-                <label htmlFor=''>Mot De Passe Actuel</label>
+                <label htmlFor="">Mot De Passe Actuel</label>
                 <input
-                  id='current'
+                  id="current"
                   ref={currentPassword}
                   style={{ width: '65%', marginBlock: '1em' }}
-                  type='text'
+                  type="text"
                   onChange={(e) => handleErr(e)}
                   onFocus={() => setErr('')}
                 />
               </div>
               <div>
-                <label htmlFor=''>Nouveau Mot De Passe</label>
+                <label htmlFor="">Nouveau Mot De Passe</label>
                 <input
-                  id='new'
+                  id="new"
                   ref={newPassword}
                   style={{ width: '65%', marginBlock: '1em' }}
-                  type='text'
+                  type="text"
                   onChange={(e) => handleErr(e)}
                 />
               </div>
               <div>
-                <label htmlFor=''>Confirmer Nouveau Mot De Passe</label>
+                <label htmlFor="">
+                  Confirmer Nouveau Mot De Passe
+                </label>
                 <input
-                  id='confirm'
+                  id="confirm"
                   ref={confirmNewPassword}
                   style={{ width: '65%', marginBlock: '1em' }}
-                  type='text'
+                  type="text"
                   onChange={(e) => handleErr(e)}
                   onFocus={() => setErr('')}
                 />
               </div>
-              <div className='btns'>
+              <div className="btns">
                 <button
-                  className='btn'
+                  className="btn"
                   onClick={(e) => {
                     handleOnSubmit(e);
                     if (empty.length === 0) handleSubmit(e);
@@ -132,29 +136,31 @@ const SecurityProfile = () => {
           ) : (
             <form>
               <div>
-                <label htmlFor=''>Nouveau Mot De Passe</label>
+                <label htmlFor="">Nouveau Mot De Passe</label>
                 <input
-                  id='new'
+                  id="new"
                   ref={newPassword}
                   style={{ width: '65%', marginBlock: '1em' }}
-                  type='text'
+                  type="text"
                   onChange={(e) => handleErr(e)}
                 />
               </div>
               <div>
-                <label htmlFor=''>Confirmer Nouveau Mot De Passe</label>
+                <label htmlFor="">
+                  Confirmer Nouveau Mot De Passe
+                </label>
                 <input
-                  id='confirm'
+                  id="confirm"
                   ref={confirmNewPassword}
                   style={{ width: '65%', marginBlock: '1em' }}
-                  type='text'
+                  type="text"
                   onChange={(e) => handleErr(e)}
                   onFocus={() => setErr('')}
                 />
               </div>
-              <div className='btns'>
+              <div className="btns">
                 <button
-                  className='btn'
+                  className="btn"
                   onClick={(e) => {
                     handleOnSubmit(e);
                     if (empty.length === 0) handleSubmit(e);
@@ -167,7 +173,7 @@ const SecurityProfile = () => {
           )}
         </>
       ) : (
-        <Successs message='Mot de pass a été changé !' />
+        <Successs message="Mot de pass a été changé !" />
       )}
     </div>
   );

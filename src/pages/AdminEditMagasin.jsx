@@ -34,9 +34,12 @@ const AdminEditMagasin = () => {
   const [deletedMagasin, setDeletedMagasin] = useState();
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/magasins/${magasinId}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://mystorify-api.cyclic.app/api/magasins/${magasinId}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setMagasin(res.data);
@@ -51,7 +54,7 @@ const AdminEditMagasin = () => {
       console.log(magasin?.Utilisateur?.email);
       axios
         .post(
-          `http://localhost:3000/api/magasins/delete/${magasinId}`,
+          `https://mystorify-api.cyclic.app/api/magasins/delete/${magasinId}`,
           {
             email,
           }
@@ -131,7 +134,7 @@ const AdminEditMagasin = () => {
     console.log(magasin?.Utilisateur?.email);
     axios
       .patch(
-        `http://localhost:3000/api/magasins/valider/${magasin.id}`,
+        `https://mystorify-api.cyclic.app/api/magasins/valider/${magasin.id}`,
         {
           email,
         }
@@ -147,7 +150,9 @@ const AdminEditMagasin = () => {
   };
   const deleteDepot = (id) => {
     axios
-      .delete(`http://localhost:3000/api/magasins/depot/delete/${id}`)
+      .delete(
+        `https://mystorify-api.cyclic.app/api/magasins/depot/delete/${id}`
+      )
       .then((res) => {
         console.log(res.data);
         setDepots((current) =>
@@ -164,12 +169,15 @@ const AdminEditMagasin = () => {
     setIsLoading(true);
 
     axios
-      .patch(`http://localhost:3000/api/magasins/${magasin.id}`, {
-        nom,
-        desc,
-        categorieId,
-        logo,
-      })
+      .patch(
+        `https://mystorify-api.cyclic.app/api/magasins/${magasin.id}`,
+        {
+          nom,
+          desc,
+          categorieId,
+          logo,
+        }
+      )
       .then((res) => {
         console.log(res);
         navigate(`/dashboard/admin/magasins`);

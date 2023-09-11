@@ -8,7 +8,9 @@ import Successs from '../components/Success';
 import axios from 'axios';
 const UpdateForgotPass = () => {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector(
+    (state) => state.auth.isAuthenticated
+  );
   const [firstPass, setFirstPass] = useState('');
   const [password, setPassword] = useState('');
   const [err, setErr] = useState('');
@@ -38,12 +40,14 @@ const UpdateForgotPass = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (firstPass !== password) {
-      setErr("Confirmer le mot de pass correctement s'il vous plait !");
+      setErr(
+        "Confirmer le mot de pass correctement s'il vous plait !"
+      );
       console.log(err);
     } else {
       axios
         .patch(
-          'http://localhost:3000/api/users/updateForgotPass',
+          'https://mystorify-api.cyclic.app/api/users/updateForgotPass',
           { password },
           {
             withCredentials: true,
@@ -61,22 +65,22 @@ const UpdateForgotPass = () => {
 
   return (
     <main>
-      <div className='container'>
-        <div className='login-flex'>
-          <div className='left'>
-            <img src={Picture} alt='' />
+      <div className="container">
+        <div className="login-flex">
+          <div className="left">
+            <img src={Picture} alt="" />
           </div>
-          <div className='right'>
+          <div className="right">
             {!done && (
-              <form className='right-content'>
+              <form className="right-content">
                 <h1>Changer votre mot de pass</h1>
                 <p>Entrez le nouveau mot de pass ci-dessous</p>
-                {err && <p className='err'>{err}</p>}
+                {err && <p className="err">{err}</p>}
                 <input
-                  id='first'
-                  placeholder='Mot de Pass'
-                  type='password'
-                  className='login-input'
+                  id="first"
+                  placeholder="Mot de Pass"
+                  type="password"
+                  className="login-input"
                   onFocus={(e) => {
                     setErr('');
                   }}
@@ -86,10 +90,10 @@ const UpdateForgotPass = () => {
                   }}
                 />
                 <input
-                  id='confirm'
-                  placeholder='Confirmer mot de pass'
-                  type='password'
-                  className='login-input'
+                  id="confirm"
+                  placeholder="Confirmer mot de pass"
+                  type="password"
+                  className="login-input"
                   onFocus={(e) => {
                     setErr('');
                   }}
@@ -98,9 +102,9 @@ const UpdateForgotPass = () => {
                     handleErr(e);
                   }}
                 />
-                <div className='login-cta'>
+                <div className="login-cta">
                   <button
-                    className='btn'
+                    className="btn"
                     onClick={(e) => {
                       handleOnSubmit(e);
                       handleSubmit(e);
@@ -112,9 +116,9 @@ const UpdateForgotPass = () => {
               </form>
             )}
             {done && (
-              <div className='right-content'>
+              <div className="right-content">
                 <Successs
-                  message='Votre compte a été modifié avec succès !'
+                  message="Votre compte a été modifié avec succès !"
                   login={true}
                 />
               </div>

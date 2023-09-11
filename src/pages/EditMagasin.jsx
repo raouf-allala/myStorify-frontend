@@ -45,7 +45,7 @@ const EditMagasin = () => {
   const [logo, setLogo] = useState();
   useEffect(() => {
     axios
-      .get('http://localhost:3000/api/categories')
+      .get('https://mystorify-api.cyclic.app/api/categories')
       .then((res) => {
         console.log(res.data);
         setCategories(res.data);
@@ -57,7 +57,7 @@ const EditMagasin = () => {
   useEffect(() => {
     const id = magasinId;
     axios
-      .get(`http://localhost:3000/api/magasins/${id}`)
+      .get(`https://mystorify-api.cyclic.app/api/magasins/${id}`)
       .then((res) => {
         console.log(res.data);
         setMagasin(res.data);
@@ -86,7 +86,7 @@ const EditMagasin = () => {
       const id = deletedDepotId;
       axios
         .delete(
-          `http://localhost:3000/api/magasins/depot/delete/${id}`
+          `https://mystorify-api.cyclic.app/api/magasins/depot/delete/${id}`
         )
         .then((res) => {
           console.log(res.data);
@@ -104,9 +104,12 @@ const EditMagasin = () => {
       const email = magasin?.Utilisateur?.email;
       console.log(magasin?.Utilisateur?.email);
       axios
-        .post(`http://localhost:3000/api/magasins/delete/${id}`, {
-          email,
-        })
+        .post(
+          `https://mystorify-api.cyclic.app/api/magasins/delete/${id}`,
+          {
+            email,
+          }
+        )
         .then((res) => {
           console.log(res.data);
           dispatch(authUpdate(res.data));
@@ -175,10 +178,13 @@ const EditMagasin = () => {
   const addDepot = () => {
     const magasinId = magasin?.id;
     axios
-      .post('http://localhost:3000/api/magasins/depot/add', {
-        magasinId,
-        depot,
-      })
+      .post(
+        'https://mystorify-api.cyclic.app/api/magasins/depot/add',
+        {
+          magasinId,
+          depot,
+        }
+      )
       .then((res) => {
         console.log(res);
         setDepots(res.data);
@@ -194,12 +200,15 @@ const EditMagasin = () => {
     setIsLoading(true);
 
     axios
-      .patch(`http://localhost:3000/api/magasins/${magasin.id}`, {
-        nom,
-        desc,
-        categorieId,
-        logo,
-      })
+      .patch(
+        `https://mystorify-api.cyclic.app/api/magasins/${magasin.id}`,
+        {
+          nom,
+          desc,
+          categorieId,
+          logo,
+        }
+      )
       .then((res) => {
         console.log(res);
         navigate(`/dashboard/magasin/${magasin.id}/products`);

@@ -58,9 +58,12 @@ const ProductDetails = () => {
   // };
   const getRelatedProducts = (res) => {
     axios
-      .post('http://localhost:3000/api/produits/categorie', {
-        sous_CategorieId: res.data.Sous_Categorie.id,
-      })
+      .post(
+        'https://mystorify-api.cyclic.app/api/produits/categorie',
+        {
+          sous_CategorieId: res.data.Sous_Categorie.id,
+        }
+      )
       .then((res) => {
         setCategoryProducts(res.data);
       });
@@ -68,7 +71,7 @@ const ProductDetails = () => {
   const getStoreProducts = (res) => {
     axios
       .post(
-        `http://localhost:3000/api/produits/user/magasin/${res.data.magasin.id}`,
+        `https://mystorify-api.cyclic.app/api/produits/user/magasin/${res.data.magasin.id}`,
         {
           number: 3,
         }
@@ -79,7 +82,9 @@ const ProductDetails = () => {
   };
   const getProduct = () => {
     axios
-      .get(`http://localhost:3000/api/produits/${produitId}`)
+      .get(
+        `https://mystorify-api.cyclic.app/api/produits/${produitId}`
+      )
       .then((res) => {
         setProduct(res.data);
         setImages(res.data.images);
@@ -109,7 +114,7 @@ const ProductDetails = () => {
   useEffect(() => {
     if (isAuthenticated) {
       axios
-        .get('http://localhost:3000/api/produits/user', {
+        .get('https://mystorify-api.cyclic.app/api/produits/user', {
           withCredentials: true,
         })
         .then((res) => {
@@ -128,7 +133,7 @@ const ProductDetails = () => {
   const handleRemoveWishlist = () => {
     axios
       .delete(
-        `http://localhost:3000/api/produits/user/${wishlistId}`,
+        `https://mystorify-api.cyclic.app/api/produits/user/${wishlistId}`,
         {
           withCredentials: true,
         }
@@ -148,7 +153,7 @@ const ProductDetails = () => {
     if (isAuthenticated) {
       axios
         .post(
-          `http://localhost:3000/api/produits/user`,
+          `https://mystorify-api.cyclic.app/api/produits/user`,
           { produitId: product.id },
           { withCredentials: true }
         )

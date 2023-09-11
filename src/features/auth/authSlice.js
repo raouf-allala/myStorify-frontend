@@ -71,9 +71,13 @@ const authSlice = createSlice({
       localStorage.removeItem('rememberMe');
       localStorage.removeItem('user'); // Remove user data from local storage
       axios
-        .post('http://localhost:3000/api/users/logout', null, {
-          withCredentials: true,
-        })
+        .post(
+          'https://mystorify-api.cyclic.app/api/users/logout',
+          null,
+          {
+            withCredentials: true,
+          }
+        )
         .catch((err) => console.log(err)); // Log any errors that occur during logout
     },
   },
@@ -85,7 +89,7 @@ export const login =
     dispatch(authRequest());
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/users/login',
+        'https://mystorify-api.cyclic.app/api/users/login',
         { email, password },
         { withCredentials: true }
       );
@@ -107,7 +111,7 @@ export const verifyRemember = (rememberMe) => async (dispatch) => {
     console.log(email);
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/users/getRememberedUser',
+        'https://mystorify-api.cyclic.app/api/users/getRememberedUser',
         { email },
         {
           withCredentials: true,
@@ -130,7 +134,7 @@ export const googleLogin = (rememberMe) => async (dispatch) => {
   console.log(rememberMe);
   try {
     const response = await axios.get(
-      'http://localhost:3000/api/users/googleLogin',
+      'https://mystorify-api.cyclic.app/api/users/googleLogin',
       {
         withCredentials: true,
       }
@@ -170,7 +174,7 @@ export const loadUser = () => async (dispatch) => {
 //       console.log(utilisateurId);
 //       console.log(code);
 //       const response = await axios.post(
-//         'http://localhost:3000/api/users/credit',
+//         'https://mystorify-api.cyclic.app/api/users/credit',
 //         { code, utilisateurId },
 //         { withCredentials: true }
 //       );
@@ -188,7 +192,7 @@ export const rechargerCredit =
   async (dispatch) => {
     try {
       const response = await axios.patch(
-        'http://localhost:3000/api/users/credit',
+        'https://mystorify-api.cyclic.app/api/users/credit',
         { code, utilisateurId },
         { withCredentials: true }
       );

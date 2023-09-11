@@ -11,7 +11,10 @@ const AddCategorie = () => {
 
   const handleSubmit = () => {
     axios
-      .post('http://localhost:3000/api/categories/', { nom, desc })
+      .post('https://mystorify-api.cyclic.app/api/categories/', {
+        nom,
+        desc,
+      })
       .then((res) => {
         console.log(res);
         navigate(`/dashboard/admin/categories`);
@@ -54,18 +57,18 @@ const AddCategorie = () => {
     });
   };
   return (
-    <div className='dash-content'>
-      <div className='edit-profile'>
+    <div className="dash-content">
+      <div className="edit-profile">
         <h2>Consulter et modifier les catégories</h2>{' '}
         <p style={{ color: '#3B4C68', marginBottom: '1em' }}>
           Remplire la formulaire ci dessus
         </p>
-        <div className='form-flex'>
+        <div className="form-flex">
           <div>
             <label>Nom de catégorie </label>
             <input
-              id='nom'
-              type='text'
+              id="nom"
+              type="text"
               value={nom}
               onChange={(e) => {
                 setNom(e.target.value);
@@ -75,15 +78,15 @@ const AddCategorie = () => {
                 setErr('');
               }}
             />
-            {err && <p className='err'>{err}</p>}
+            {err && <p className="err">{err}</p>}
           </div>
         </div>
-        <div className='form-flex'>
+        <div className="form-flex">
           <div>
             <label>Déscription </label>
             <textarea
-              id='desc'
-              type='text'
+              id="desc"
+              type="text"
               value={desc}
               onChange={(e) => {
                 setDesc(e.target.value);
@@ -95,19 +98,19 @@ const AddCategorie = () => {
             ></textarea>
           </div>
         </div>
-        <div className='btns'>
+        <div className="btns">
           <button
             onClick={(e) => {
               e.preventDefault();
               handleReset();
             }}
-            className='btn btn-sec'
+            className="btn btn-sec"
           >
             Réinitialiser
           </button>
 
           <button
-            className='btn'
+            className="btn"
             onClick={(e) => {
               handleOnSubmit(e);
               if (empty.length === 0 && !err) {

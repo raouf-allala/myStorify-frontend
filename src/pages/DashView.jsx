@@ -101,7 +101,9 @@ const DashView = () => {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/produits/dashTop/${magasin.id}`)
+      .get(
+        `https://mystorify-api.cyclic.app/api/produits/dashTop/${magasin.id}`
+      )
       .then((res) => {
         console.log(res.data);
         setTotal(0);

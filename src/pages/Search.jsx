@@ -19,7 +19,9 @@ const Search = () => {
   useEffect(() => {
     window.scrollTo({ top: true });
     axios
-      .get(`http://localhost:3000/api/produits/search/${search}`)
+      .get(
+        `https://mystorify-api.cyclic.app/api/produits/search/${search}`
+      )
       .then((res) => {
         console.log(res.data);
         const productsWithAvgRating = res.data.map((product) => {

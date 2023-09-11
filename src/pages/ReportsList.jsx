@@ -32,7 +32,7 @@ const ReportsList = () => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:3000/api/users/reports`, {
+      .post(`https://mystorify-api.cyclic.app/api/users/reports`, {
         dateOrder,
         nom,
         type,
@@ -54,7 +54,7 @@ const ReportsList = () => {
   }, [dateOrder, , nom, type]);
   const getNext = (take, skip, last) => {
     axios
-      .post(`http://localhost:3000/api/reports/paged`, {
+      .post(`https://mystorify-api.cyclic.app/api/reports/paged`, {
         take,
         skip,
         dateOrder,
@@ -74,7 +74,7 @@ const ReportsList = () => {
   };
   const getPrev = (take, skip, last) => {
     axios
-      .post(`http://localhost:3000/api/reports/paged/`, {
+      .post(`https://mystorify-api.cyclic.app/api/reports/paged/`, {
         take,
         skip,
         dateOrder,
@@ -93,12 +93,12 @@ const ReportsList = () => {
 
   return (
     <>
-      <div className='dash-content dash-products'>
-        <div className='head'>
+      <div className="dash-content dash-products">
+        <div className="head">
           <h2>List des reclamations</h2>
         </div>
         <div
-          className='form-flex'
+          className="form-flex"
           style={{
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -108,7 +108,7 @@ const ReportsList = () => {
           <div></div>
           <div>
             <label style={{}}>Trier par </label>
-            <div className='dropdown' style={{ zIndex: '5' }}>
+            <div className="dropdown" style={{ zIndex: '5' }}>
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -131,7 +131,7 @@ const ReportsList = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className='dropdown-methods'
+                    className="dropdown-methods"
                   >
                     <li
                       onClick={() => {
@@ -159,7 +159,10 @@ const ReportsList = () => {
 
           <div>
             <label style={{}}>Type </label>
-            <div className='dropdown' style={{ zIndex: '5', marginBlock: '0' }}>
+            <div
+              className="dropdown"
+              style={{ zIndex: '5', marginBlock: '0' }}
+            >
               <button
                 style={{ marginBlock: '0' }}
                 onClick={(e) => {
@@ -183,7 +186,7 @@ const ReportsList = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className='dropdown-methods'
+                    className="dropdown-methods"
                   >
                     <li
                       onClick={() => {
@@ -217,11 +220,11 @@ const ReportsList = () => {
               </AnimatePresence>
             </div>
           </div>
-          <div className='search-input-holder'>
-            <FiSearch className='search-icon' color='#3B4C68' />
+          <div className="search-input-holder">
+            <FiSearch className="search-icon" color="#3B4C68" />
             <input
-              type='text'
-              className='search-input'
+              type="text"
+              className="search-input"
               onChange={(e) => {
                 setNom(e.target.value);
               }}
@@ -230,7 +233,7 @@ const ReportsList = () => {
         </div>
 
         <div
-          className='list'
+          className="list"
           style={{
             paddingRight: '2em',
             marginTop: '3em',
@@ -238,14 +241,14 @@ const ReportsList = () => {
             paddingBottom: '.7em',
           }}
         >
-          <ul className=' head magasins'>
+          <ul className=" head magasins">
             <li>Titre</li>
             <li>Reporter</li>
             <li>Type</li>
           </ul>
         </div>
         {!err && (
-          <div className='dash-products-wrapper'>
+          <div className="dash-products-wrapper">
             {reports &&
               reports.map((report) => {
                 return (
@@ -258,8 +261,8 @@ const ReportsList = () => {
           </div>
         )}
         {!err && (
-          <div className='pages'>
-            <p className='number'>
+          <div className="pages">
+            <p className="number">
               {counter} de {total} reclamations
             </p>
 
@@ -269,9 +272,13 @@ const ReportsList = () => {
                   {counter > 11 && (
                     <>
                       <AiOutlineLeft
-                        className='arrow'
+                        className="arrow"
                         onClick={() => {
-                          getPrev(10, counter - reports.length - 10, false);
+                          getPrev(
+                            10,
+                            counter - reports.length - 10,
+                            false
+                          );
                           setPage((current) => --current);
                         }}
                       />
@@ -279,9 +286,11 @@ const ReportsList = () => {
                   )}
                   {page <= Math.ceil(total / 10) && (
                     <span
-                      className='number'
+                      className="number"
                       style={
-                        page === 1 ? { color: '#2E47BD' } : { color: '#3B4C68' }
+                        page === 1
+                          ? { color: '#2E47BD' }
+                          : { color: '#3B4C68' }
                       }
                       onClick={() => {
                         getNext(10, 0, false);
@@ -293,16 +302,20 @@ const ReportsList = () => {
                     </span>
                   )}
                   {page > 1 && (
-                    <span className='number' style={{ color: '#2E47BD' }}>
+                    <span
+                      className="number"
+                      style={{ color: '#2E47BD' }}
+                    >
                       ... {page}
                     </span>
                   )}
                   {page < Math.ceil(total / 10) && (
                     <span
-                      className='number'
+                      className="number"
                       onClick={() => {
                         console.log(total);
-                        if (total % 10 === 0) getNext(10, total - 10, true);
+                        if (total % 10 === 0)
+                          getNext(10, total - 10, true);
                         else getNext(10, total - (total % 10), true);
                         setCounter(total);
                         setPage(Math.ceil(total / 10));
@@ -313,7 +326,7 @@ const ReportsList = () => {
                   )}
                   {counter < total && (
                     <AiOutlineRight
-                      className='arrow'
+                      className="arrow"
                       onClick={() => {
                         getNext(10, counter, false);
                         setPage((current) => ++current);
@@ -328,7 +341,11 @@ const ReportsList = () => {
         )}
         {err && (
           <h3
-            style={{ textAlign: 'center', color: '#3B4C68', marginTop: '3em' }}
+            style={{
+              textAlign: 'center',
+              color: '#3B4C68',
+              marginTop: '3em',
+            }}
           >
             {err}
           </h3>

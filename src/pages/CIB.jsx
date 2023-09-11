@@ -28,7 +28,7 @@ function CIB() {
     event.preventDefault();
     axios
       .post(
-        'http://localhost:3000/api/achat',
+        'https://mystorify-api.cyclic.app/api/achat',
         commande,
 
         { withCredentials: true }

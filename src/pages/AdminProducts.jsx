@@ -31,13 +31,16 @@ const AdminProducts = () => {
   const [err, setErr] = useState();
   useEffect(() => {
     axios
-      .post(`http://localhost:3000/api/produits/dash/admin/`, {
-        prixOrder,
-        dateOrder,
-        quantityOrder,
-        categorieId,
-        nom,
-      })
+      .post(
+        `https://mystorify-api.cyclic.app/api/produits/dash/admin/`,
+        {
+          prixOrder,
+          dateOrder,
+          quantityOrder,
+          categorieId,
+          nom,
+        }
+      )
       .then((res) => {
         setProducts(res.data.products);
         setTotal(res.data.total);
@@ -52,7 +55,7 @@ const AdminProducts = () => {
   }, [prixOrder, dateOrder, quantityOrder, categorieId, nom]);
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/categories/`)
+      .get(`https://mystorify-api.cyclic.app/api/categories/`)
       .then((res) => {
         console.log(res.data);
         setCategories(res.data);
@@ -61,15 +64,18 @@ const AdminProducts = () => {
   }, []);
   const getNext = (take, skip, last) => {
     axios
-      .post(`http://localhost:3000/api/produits/admin/paged/`, {
-        take,
-        skip,
-        prixOrder,
-        dateOrder,
-        quantityOrder,
-        categorieId,
-        nom,
-      })
+      .post(
+        `https://mystorify-api.cyclic.app/api/produits/admin/paged/`,
+        {
+          take,
+          skip,
+          prixOrder,
+          dateOrder,
+          quantityOrder,
+          categorieId,
+          nom,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setProducts(res.data);
@@ -83,15 +89,18 @@ const AdminProducts = () => {
   };
   const getPrev = (take, skip, last) => {
     axios
-      .post(`http://localhost:3000/api/produits/admin/paged/`, {
-        take,
-        skip,
-        prixOrder,
-        dateOrder,
-        quantityOrder,
-        categorieId,
-        nom,
-      })
+      .post(
+        `https://mystorify-api.cyclic.app/api/produits/admin/paged/`,
+        {
+          take,
+          skip,
+          prixOrder,
+          dateOrder,
+          quantityOrder,
+          categorieId,
+          nom,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setProducts(res.data);
@@ -104,19 +113,19 @@ const AdminProducts = () => {
 
   return (
     <>
-      <div className='dash-content dash-products'>
-        <div className='head'>
+      <div className="dash-content dash-products">
+        <div className="head">
           <h2>List des produits</h2>
         </div>
         <div
-          className='form-flex'
+          className="form-flex"
           style={{
             justifyContent: 'space-between',
             alignItems: 'center',
             marginTop: '1em',
           }}
         >
-          <button className='btn'>
+          <button className="btn">
             <Link
               to={`/dashboard/admin/codesPromos`}
               style={{ color: 'white' }}
@@ -126,7 +135,7 @@ const AdminProducts = () => {
           </button>
           <div>
             <label style={{}}>Trier par </label>
-            <div className='dropdown' style={{ zIndex: '5' }}>
+            <div className="dropdown" style={{ zIndex: '5' }}>
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -149,7 +158,7 @@ const AdminProducts = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className='dropdown-methods'
+                    className="dropdown-methods"
                   >
                     <li
                       onClick={() => {
@@ -224,7 +233,10 @@ const AdminProducts = () => {
           </div>
           <div>
             <label style={{}}>Catégorie </label>
-            <div className='dropdown' style={{ zIndex: '5', marginBlock: '0' }}>
+            <div
+              className="dropdown"
+              style={{ zIndex: '5', marginBlock: '0' }}
+            >
               <button
                 style={{ marginBlock: '0' }}
                 onClick={(e) => {
@@ -249,24 +261,29 @@ const AdminProducts = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className='dropdown-methods'
-                      style={{ maxHeight: '25vh', overflow: 'scroll' }}
+                      className="dropdown-methods"
+                      style={{
+                        maxHeight: '25vh',
+                        overflow: 'scroll',
+                      }}
                     >
                       {categories.map((categorie) => {
-                        return categorie.Sous_Categorie.map((cate) => {
-                          console.log(cate.nom);
-                          return (
-                            <li
-                              onClick={() => {
-                                setCategorieNom(cate.nom);
-                                setCategorieId(cate.id);
-                                setDropdownCata(false);
-                              }}
-                            >
-                              {cate.nom}
-                            </li>
-                          );
-                        });
+                        return categorie.Sous_Categorie.map(
+                          (cate) => {
+                            console.log(cate.nom);
+                            return (
+                              <li
+                                onClick={() => {
+                                  setCategorieNom(cate.nom);
+                                  setCategorieId(cate.id);
+                                  setDropdownCata(false);
+                                }}
+                              >
+                                {cate.nom}
+                              </li>
+                            );
+                          }
+                        );
                       })}
 
                       <li
@@ -284,11 +301,11 @@ const AdminProducts = () => {
               )}
             </div>
           </div>
-          <div className='search-input-holder'>
-            <FiSearch className='search-icon' color='#3B4C68' />
+          <div className="search-input-holder">
+            <FiSearch className="search-icon" color="#3B4C68" />
             <input
-              type='text'
-              className='search-input'
+              type="text"
+              className="search-input"
               onChange={(e) => {
                 setNom(e.target.value);
               }}
@@ -297,7 +314,7 @@ const AdminProducts = () => {
         </div>
 
         <div
-          className='list'
+          className="list"
           style={{
             paddingRight: '2em',
             marginTop: '3em',
@@ -305,7 +322,7 @@ const AdminProducts = () => {
             paddingBottom: '.7em',
           }}
         >
-          <ul className='cols head'>
+          <ul className="cols head">
             <li>Nom du produit</li>
             <li
               style={{
@@ -331,7 +348,7 @@ const AdminProducts = () => {
           </ul>
         </div>
         {!err && (
-          <div className='dash-products-wrapper'>
+          <div className="dash-products-wrapper">
             {total === 0 && <p>il y a pas des produits</p>}
             {products &&
               products.map((product) => {
@@ -345,8 +362,8 @@ const AdminProducts = () => {
           </div>
         )}
         {!err && (
-          <div className='pages'>
-            <p className='number'>
+          <div className="pages">
+            <p className="number">
               {counter} de {total} produits
             </p>
 
@@ -356,9 +373,13 @@ const AdminProducts = () => {
                   {counter > 10 && (
                     <>
                       <AiOutlineLeft
-                        className='arrow'
+                        className="arrow"
                         onClick={() => {
-                          getPrev(10, counter - products.length - 10, false);
+                          getPrev(
+                            10,
+                            counter - products.length - 10,
+                            false
+                          );
                           setPage((current) => --current);
                         }}
                       />
@@ -366,9 +387,11 @@ const AdminProducts = () => {
                   )}
                   {page <= Math.ceil(total / 10) && (
                     <span
-                      className='number'
+                      className="number"
                       style={
-                        page === 1 ? { color: '#2E47BD' } : { color: '#3B4C68' }
+                        page === 1
+                          ? { color: '#2E47BD' }
+                          : { color: '#3B4C68' }
                       }
                       onClick={() => {
                         getNext(10, 0, false);
@@ -380,16 +403,20 @@ const AdminProducts = () => {
                     </span>
                   )}
                   {page > 1 && (
-                    <span className='number' style={{ color: '#2E47BD' }}>
+                    <span
+                      className="number"
+                      style={{ color: '#2E47BD' }}
+                    >
                       ... {page}
                     </span>
                   )}
                   {page < Math.ceil(total / 10) && (
                     <span
-                      className='number'
+                      className="number"
                       onClick={() => {
                         console.log(total);
-                        if (total % 10 === 0) getNext(10, total - 10, true);
+                        if (total % 10 === 0)
+                          getNext(10, total - 10, true);
                         else getNext(10, total - (total % 10), true);
                         setCounter(total);
                         setPage(Math.ceil(total / 10));
@@ -400,7 +427,7 @@ const AdminProducts = () => {
                   )}
                   {counter < total && (
                     <AiOutlineRight
-                      className='arrow'
+                      className="arrow"
                       onClick={() => {
                         getNext(10, counter, false);
                         setPage((current) => ++current);
@@ -415,7 +442,11 @@ const AdminProducts = () => {
         )}
         {err && (
           <h3
-            style={{ textAlign: 'center', color: '#3B4C68', marginTop: '3em' }}
+            style={{
+              textAlign: 'center',
+              color: '#3B4C68',
+              marginTop: '3em',
+            }}
           >
             {err}
           </h3>

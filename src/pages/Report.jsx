@@ -43,7 +43,7 @@ const Report = () => {
   const handleSubmit = () => {
     axios
       .post(
-        'http://localhost:3000/api/users/report',
+        'https://mystorify-api.cyclic.app/api/users/report',
         { titre, desc, type },
         {
           withCredentials: true,

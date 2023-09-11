@@ -66,7 +66,9 @@ const UpdateUser = () => {
   useEffect(() => {
     if (deletedUser === true) {
       axios
-        .delete(`http://localhost:3000/api/users/delete/${id}`)
+        .delete(
+          `https://mystorify-api.cyclic.app/api/users/delete/${id}`
+        )
         .then((res) => {
           console.log(res);
           navigate('/dashboard/admin/users');
@@ -78,7 +80,9 @@ const UpdateUser = () => {
   }, [deletedUser]);
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/users/dash/admin/${id}`)
+      .get(
+        `https://mystorify-api.cyclic.app/api/users/dash/admin/${id}`
+      )
       .then((res) => {
         console.log(res.data);
         setUser(res.data);
@@ -105,9 +109,13 @@ const UpdateUser = () => {
       credit,
     };
     axios
-      .patch('http://localhost:3000/api/users/admin/update', updatedUser, {
-        withCredentials: true,
-      })
+      .patch(
+        'https://mystorify-api.cyclic.app/api/users/admin/update',
+        updatedUser,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         navigate('/dashboard/admin/users');
@@ -115,60 +123,61 @@ const UpdateUser = () => {
       .catch((err) => console.log(err));
   };
   return (
-    <div className='dash-content'>
-      <div className='head'>
+    <div className="dash-content">
+      <div className="head">
         <h2>Voir et modifier les information de cet utilisateur</h2>
 
         <p>
-          Ce compte a été crée le {date[0]} à {date[1]?.substring(0, 8)}
+          Ce compte a été crée le {date[0]} à{' '}
+          {date[1]?.substring(0, 8)}
         </p>
       </div>
-      <div className='edit-profile'>
+      <div className="edit-profile">
         <form>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
-              <label htmlFor=''>Nom</label>
+              <label htmlFor="">Nom</label>
               <input
-                id='nom'
+                id="nom"
                 onChange={(e) => {
                   setNom(e.target.value);
                   handleErr(e);
                 }}
                 value={nom}
-                type='text'
+                type="text"
               />
             </div>
             <div>
-              <label htmlFor=''>Prénom</label>
+              <label htmlFor="">Prénom</label>
               <input
-                id='prenom'
+                id="prenom"
                 onChange={(e) => {
                   setPrenom(e.target.value);
                   handleErr(e);
                 }}
                 value={prenom}
-                type='text'
+                type="text"
               />
             </div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
-              <label htmlFor=''>Addresse</label>
+              <label htmlFor="">Addresse</label>
               <input
-                id='adresse'
+                id="adresse"
                 onChange={(e) => {
                   setAdresse(e.target.value);
                   handleErr(e);
                 }}
                 value={adresse}
-                type='text'
+                type="text"
               />
             </div>
             <div>
-              <label htmlFor=''>Téléphone</label>
+              <label htmlFor="">Téléphone</label>
               <input
                 style={{ marginBottom: '.5em' }}
-                id='telephone'
+                id="telephone"
                 onChange={(e) => {
                   setTelephone(e.target.value);
                   handleErr(e);
@@ -177,66 +186,70 @@ const UpdateUser = () => {
                   setValidPhone(true);
                 }}
                 value={telephone}
-                type='text'
+                type="text"
               />
               {!validPhone && (
-                <p className='err'>Ce numéro de telephone est invalide !</p>
+                <p className="err">
+                  Ce numéro de telephone est invalide !
+                </p>
               )}
             </div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
-              <label htmlFor=''>Wilaya</label>
+              <label htmlFor="">Wilaya</label>
               <input
-                id='wilaya'
+                id="wilaya"
                 onChange={(e) => {
                   handleErr(e);
                   setWilaya(e.target.value);
                   handleErr(e);
                 }}
                 value={wilaya}
-                type='text'
+                type="text"
               />
             </div>
             <div>
-              <label htmlFor=''>Adresse email</label>
+              <label htmlFor="">Adresse email</label>
               <input
-                id='eamil'
+                id="eamil"
                 onChange={(e) => {
                   handleErr(e);
                   setEmail(e.target.value);
                   handleErr(e);
                 }}
                 value={email}
-                type='text'
+                type="text"
               />
               {!validEmail && (
-                <p className='err' style={{ marginTop: '.5em' }}>
+                <p className="err" style={{ marginTop: '.5em' }}>
                   Cette adresse email est invalide !
                 </p>
               )}
             </div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
-              <label htmlFor=''>Crédit</label>
+              <label htmlFor="">Crédit</label>
               <input
-                id='credit'
+                id="credit"
                 onChange={(e) => {
                   setCredit(e.target.value);
                   handleErr(e);
                 }}
                 value={credit}
-                type='text'
+                type="text"
               />
             </div>
             <div></div>
           </div>
           {user?.Magasin.length !== 0 && (
-            <div className='form-flex' style={{ color: '#3B4C68' }}>
+            <div className="form-flex" style={{ color: '#3B4C68' }}>
               <div>
                 <h3>Les magasins de cet utilisateur</h3>
-                <ul style={{ paddingLeft: '1.5em', fontWeight: '500' }}>
+                <ul
+                  style={{ paddingLeft: '1.5em', fontWeight: '500' }}
+                >
                   {user?.Magasin?.map((magasin) => {
                     return (
                       <li
@@ -254,7 +267,7 @@ const UpdateUser = () => {
             </div>
           )}
           <div
-            className='btns'
+            className="btns"
             style={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -262,7 +275,7 @@ const UpdateUser = () => {
           >
             <div>
               <button
-                className='btn'
+                className="btn"
                 style={{
                   backgroundColor: 'red',
                   display: 'flex',
@@ -284,12 +297,12 @@ const UpdateUser = () => {
                   e.preventDefault();
                   handleReset();
                 }}
-                className='btn btn-sec'
+                className="btn btn-sec"
               >
                 Réinitialiser
               </button>
               <button
-                className='btn'
+                className="btn"
                 onClick={(e) => {
                   handleOnSubmit(e);
                   setValidPhone(phoneExp.test(telephone));
@@ -311,7 +324,7 @@ const UpdateUser = () => {
         </form>
         {dialogUser && (
           <Dialog
-            text1='Est ce que vous-avez sur ?'
+            text1="Est ce que vous-avez sur ?"
             setDialogUser={setDialogUser}
             setDeletedUser={setDeletedUser}
           />

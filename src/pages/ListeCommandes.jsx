@@ -30,9 +30,12 @@ const ListeCommandes = () => {
   const [err, setErr] = useState();
   useEffect(() => {
     axios
-      .post(`http://localhost:3000/api/achat/magasin/${magasin.id}`, {
-        etat,
-      })
+      .post(
+        `https://mystorify-api.cyclic.app/api/achat/magasin/${magasin.id}`,
+        {
+          etat,
+        }
+      )
       .then((res) => {
         console.log(res.data);
 
@@ -50,13 +53,16 @@ const ListeCommandes = () => {
   }, [etat]);
   const getNext = (take, skip, last) => {
     axios
-      .post(`http://localhost:3000/api/achat/paged/${magasin.id}`, {
-        take,
-        skip,
-        dateOrder,
-        quantityOrder,
-        nom,
-      })
+      .post(
+        `https://mystorify-api.cyclic.app/api/achat/paged/${magasin.id}`,
+        {
+          take,
+          skip,
+          dateOrder,
+          quantityOrder,
+          nom,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setCommandes(res.data);
@@ -70,13 +76,16 @@ const ListeCommandes = () => {
   };
   const getPrev = (take, skip, last) => {
     axios
-      .post(`http://localhost:3000/api/achat/paged/${magasin.id}`, {
-        take,
-        skip,
-        dateOrder,
-        quantityOrder,
-        nom,
-      })
+      .post(
+        `https://mystorify-api.cyclic.app/api/achat/paged/${magasin.id}`,
+        {
+          take,
+          skip,
+          dateOrder,
+          quantityOrder,
+          nom,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setProducts(res.data);

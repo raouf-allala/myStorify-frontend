@@ -63,7 +63,7 @@ const DemanderMagasin = () => {
     };
     console.log(magasin);
     axios
-      .post('http://localhost:3000/api/magasins', magasin)
+      .post('https://mystorify-api.cyclic.app/api/magasins', magasin)
       .then((res) => {
         console.log(res);
       })

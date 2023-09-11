@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState, useRef } from 'react';
-import { Navigate, useParams, useNavigate, Link } from 'react-router-dom';
+import {
+  Navigate,
+  useParams,
+  useNavigate,
+  Link,
+} from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import { authUpdate } from '../features/auth/authSlice';
@@ -34,12 +39,14 @@ const UpdateAdminPass = () => {
   };
 
   const handleSubmit = () => {
-    if (newPassword.current.value !== confirmNewPassword.current.value) {
+    if (
+      newPassword.current.value !== confirmNewPassword.current.value
+    ) {
       setErr('Reconfimer votre nouveau mot de passe !');
     } else {
       axios
         .patch(
-          'http://localhost:3000/api/users/dash/admin/password',
+          'https://mystorify-api.cyclic.app/api/users/dash/admin/password',
           {
             oldPassword: currentPassword?.current?.value,
             newPassword: newPassword.current.value,
@@ -58,59 +65,62 @@ const UpdateAdminPass = () => {
     }
   };
   return (
-    <div className='dash-content'>
-      <div className='head'>
+    <div className="dash-content">
+      <div className="head">
         <h2>Changer votre mot de pass</h2>
       </div>
-      <div className='edit-profile'>
-        <button className='btn'>
-          <Link to={`/dashboard/admin/update/`} style={{ color: 'white' }}>
+      <div className="edit-profile">
+        <button className="btn">
+          <Link
+            to={`/dashboard/admin/update/`}
+            style={{ color: 'white' }}
+          >
             Modifier compte
           </Link>
         </button>
         <form style={{ marginTop: '1em' }}>
-          {err && <p className='err'>{err}</p>}
-          <div className='form-flex'>
+          {err && <p className="err">{err}</p>}
+          <div className="form-flex">
             <div>
-              <label htmlFor=''>Mot De Passe Actuel</label>
+              <label htmlFor="">Mot De Passe Actuel</label>
               <input
-                id='current'
+                id="current"
                 ref={currentPassword}
-                type='text'
+                type="text"
                 onChange={(e) => handleErr(e)}
                 onFocus={() => setErr('')}
               />
             </div>
             <div></div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
-              <label htmlFor=''>Nouveau Mot De Passe</label>
+              <label htmlFor="">Nouveau Mot De Passe</label>
               <input
-                id='new'
+                id="new"
                 ref={newPassword}
-                type='text'
+                type="text"
                 onChange={(e) => handleErr(e)}
               />
             </div>
             <div></div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
-              <label htmlFor=''>Confirmer Nouveau Mot De Passe</label>
+              <label htmlFor="">Confirmer Nouveau Mot De Passe</label>
               <input
-                id='confirm'
+                id="confirm"
                 ref={confirmNewPassword}
-                type='text'
+                type="text"
                 onChange={(e) => handleErr(e)}
                 onFocus={() => setErr('')}
               />
             </div>
             <div></div>
           </div>
-          <div className='btns'>
+          <div className="btns">
             <button
-              className='btn'
+              className="btn"
               onClick={(e) => {
                 handleOnSubmit(e);
 

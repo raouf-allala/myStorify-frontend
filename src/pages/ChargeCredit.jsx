@@ -17,9 +17,12 @@ const ChargeCredit = () => {
   const handleGetCard = (e) => {
     e.preventDefault();
     axios
-      .get(`http://localhost:3000/api/users/credit/${codeInput}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://mystorify-api.cyclic.app/api/users/credit/${codeInput}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setCarte(res.data);
         setCode(codeInput);

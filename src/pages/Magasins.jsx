@@ -13,11 +13,13 @@ const Magasins = () => {
   const [categories, setCategories] = useState([]);
   const [magasins, setMagasins] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:3000/api/categories').then((res) => {
-      setCategories(res.data);
-    });
     axios
-      .get('http://localhost:3000/api/magasins/valide')
+      .get('https://mystorify-api.cyclic.app/api/categories')
+      .then((res) => {
+        setCategories(res.data);
+      });
+    axios
+      .get('https://mystorify-api.cyclic.app/api/magasins/valide')
       .then((res) => {
         setMagasins(res.data);
       });

@@ -11,7 +11,7 @@ const VerifyEditEmail = () => {
   useEffect(() => {
     axios
       .patch(
-        'http://localhost:3000/api/users/updateEmail',
+        'https://mystorify-api.cyclic.app/api/users/updateEmail',
         { newEmail },
         {
           withCredentials: true,
@@ -27,7 +27,7 @@ const VerifyEditEmail = () => {
   }, []);
   return (
     <>
-      <Navigate to='/compte/email' />
+      <Navigate to="/compte/email" />
     </>
   );
 };

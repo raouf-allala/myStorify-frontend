@@ -29,7 +29,12 @@ const AddProduct = () => {
   const [image4, setImage4] = useState();
   const [err, setErr] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [empty, setEmpty] = useState(['nom', 'desc', 'quantity', 'prix']);
+  const [empty, setEmpty] = useState([
+    'nom',
+    'desc',
+    'quantity',
+    'prix',
+  ]);
 
   useEffect(() => {
     setSousCate(magasin?.Categorie?.Sous_Categorie);
@@ -167,7 +172,7 @@ const AddProduct = () => {
     };
     console.log(produit);
     axios
-      .post('http://localhost:3000/api/produits/', produit)
+      .post('https://mystorify-api.cyclic.app/api/produits/', produit)
       .then((res) => {
         console.log(res);
         navigate(`/dashboard/magasin/${magasin.id}/products`);
@@ -179,23 +184,23 @@ const AddProduct = () => {
       });
   };
   return (
-    <div className='dash-content'>
-      <div className='head'>
+    <div className="dash-content">
+      <div className="head">
         <h2>Ajouter un produit</h2>
       </div>
-      <div className='edit-profile'>
+      <div className="edit-profile">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleSubmit();
           }}
         >
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
               <label>Nom du produit </label>
               <input
-                id='nom'
-                type='text'
+                id="nom"
+                type="text"
                 value={nom}
                 onChange={(e) => {
                   setNom(e.target.value);
@@ -204,11 +209,11 @@ const AddProduct = () => {
               />
             </div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
               <label>Description </label>
               <textarea
-                id='desc'
+                id="desc"
                 value={desc}
                 onChange={(e) => {
                   setDesc(e.target.value);
@@ -218,11 +223,11 @@ const AddProduct = () => {
               ></textarea>
             </div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
               <label>Prix </label>
               <input
-                id='prix'
+                id="prix"
                 value={prix}
                 onChange={(e) => {
                   setPrix(e.target.value);
@@ -233,9 +238,9 @@ const AddProduct = () => {
             <div>
               <label>Quantité </label>
               <input
-                id='quantity'
+                id="quantity"
                 value={quantity}
-                type='text'
+                type="text"
                 onChange={(e) => {
                   setQuantity(e.target.value);
                   handleErr(e);
@@ -243,11 +248,11 @@ const AddProduct = () => {
               />
             </div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
               <label>Dépot </label>
               <div
-                className='dropdown'
+                className="dropdown"
                 style={{ zIndex: '3', marginTop: '.5em' }}
               >
                 <button
@@ -255,7 +260,9 @@ const AddProduct = () => {
                     e.preventDefault();
                     setDropdownDepot((current) => !current);
                   }}
-                  className={dropdownDepot ? 'dropdown-open' : undefined}
+                  className={
+                    dropdownDepot ? 'dropdown-open' : undefined
+                  }
                 >
                   {depotNom}
                   <IoIosArrowDown
@@ -272,7 +279,7 @@ const AddProduct = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className='dropdown-methods'
+                      className="dropdown-methods"
                     >
                       {magasin.Depot.map((depot) => {
                         return (
@@ -295,7 +302,7 @@ const AddProduct = () => {
             <div>
               <label>Catégorie</label>
               <div
-                className='dropdown'
+                className="dropdown"
                 style={{ zIndex: '5', marginTop: '.5em' }}
               >
                 <button
@@ -303,7 +310,9 @@ const AddProduct = () => {
                     e.preventDefault();
                     setDropdownCata((current) => !current);
                   }}
-                  className={dropdownCata ? 'dropdown-open' : undefined}
+                  className={
+                    dropdownCata ? 'dropdown-open' : undefined
+                  }
                 >
                   {categorieNom}
                   <IoIosArrowDown
@@ -320,7 +329,7 @@ const AddProduct = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className='dropdown-methods'
+                      className="dropdown-methods"
                     >
                       {sousCate &&
                         sousCate.map((cate) => {
@@ -345,90 +354,95 @@ const AddProduct = () => {
             </div>
           </div>
 
-          <div className='add-product-images' style={{ marginBottom: '1.5em' }}>
+          <div
+            className="add-product-images"
+            style={{ marginBottom: '1.5em' }}
+          >
             <label>Images </label>
             {err && (
-              <p className='err' style={{ marginTop: '.5em' }}>
+              <p className="err" style={{ marginTop: '.5em' }}>
                 Insérer au minimum une photo !
               </p>
             )}
             <div
-              className='add-product-images-container'
+              className="add-product-images-container"
               style={{ marginTop: '1em' }}
             >
               {image1 && (
-                <div className='add-product-image'>
-                  <div className='add-product-image-preview'>
-                    <img src={image1} alt='Product Image' />
+                <div className="add-product-image">
+                  <div className="add-product-image-preview">
+                    <img src={image1} alt="Product Image" />
                     <button
-                      className='add-product-image-delete'
+                      className="add-product-image-delete"
                       onClick={() => {
                         setImage1('');
                       }}
                     >
-                      <RxCross1 className='icon' size={17} />
+                      <RxCross1 className="icon" size={17} />
                     </button>
                   </div>
                 </div>
               )}
               {image2 && (
-                <div className='add-product-image'>
-                  <div className='add-product-image-preview'>
-                    <img src={image2} alt='Product Image' />
+                <div className="add-product-image">
+                  <div className="add-product-image-preview">
+                    <img src={image2} alt="Product Image" />
                     <button
-                      className='add-product-image-delete'
+                      className="add-product-image-delete"
                       onClick={() => {
                         setImage2('');
                       }}
                     >
-                      <RxCross1 className='icon' size={17} />
+                      <RxCross1 className="icon" size={17} />
                     </button>
                   </div>
                 </div>
               )}
               {image3 && (
-                <div className='add-product-image'>
-                  <div className='add-product-image-preview'>
-                    <img src={image3} alt='Product Image' />
+                <div className="add-product-image">
+                  <div className="add-product-image-preview">
+                    <img src={image3} alt="Product Image" />
                     <button
-                      className='add-product-image-delete'
+                      className="add-product-image-delete"
                       onClick={() => {
                         setImage3('');
                       }}
                     >
-                      <RxCross1 className='icon' size={17} />
+                      <RxCross1 className="icon" size={17} />
                     </button>
                   </div>
                 </div>
               )}
               {image4 && (
-                <div className='add-product-image'>
-                  <div className='add-product-image-preview'>
-                    <img src={image4} alt='Product Image' />
+                <div className="add-product-image">
+                  <div className="add-product-image-preview">
+                    <img src={image4} alt="Product Image" />
                     <button
-                      className='add-product-image-delete'
+                      className="add-product-image-delete"
                       onClick={() => {
                         setImage4('');
                       }}
                     >
-                      <RxCross1 className='icon' size={17} />
+                      <RxCross1 className="icon" size={17} />
                     </button>
                   </div>
                 </div>
               )}
               {!image1 && (
-                <div className='add-product-image'>
+                <div className="add-product-image">
                   <div
-                    className='add-product-image-overlay'
+                    className="add-product-image-overlay"
                     onClick={() => {
                       inputRef.current.click();
                     }}
                   >
-                    <span className='add-product-image-overlay-icon'>+</span>
+                    <span className="add-product-image-overlay-icon">
+                      +
+                    </span>
                   </div>
                   <input
-                    type='file'
-                    accept='image/*'
+                    type="file"
+                    accept="image/*"
                     ref={inputRef}
                     style={{ display: 'none' }}
                     onChange={handleImage1Upload}
@@ -436,18 +450,20 @@ const AddProduct = () => {
                 </div>
               )}
               {image1 && !image2 && (
-                <div className='add-product-image'>
+                <div className="add-product-image">
                   <div
-                    className='add-product-image-overlay'
+                    className="add-product-image-overlay"
                     onClick={() => {
                       inputRef.current.click();
                     }}
                   >
-                    <span className='add-product-image-overlay-icon'>+</span>
+                    <span className="add-product-image-overlay-icon">
+                      +
+                    </span>
                   </div>
                   <input
-                    type='file'
-                    accept='image/*'
+                    type="file"
+                    accept="image/*"
                     ref={inputRef}
                     style={{ display: 'none' }}
                     onChange={handleImage2Upload}
@@ -455,18 +471,20 @@ const AddProduct = () => {
                 </div>
               )}
               {image2 && !image3 && (
-                <div className='add-product-image'>
+                <div className="add-product-image">
                   <div
-                    className='add-product-image-overlay'
+                    className="add-product-image-overlay"
                     onClick={() => {
                       inputRef.current.click();
                     }}
                   >
-                    <span className='add-product-image-overlay-icon'>+</span>
+                    <span className="add-product-image-overlay-icon">
+                      +
+                    </span>
                   </div>
                   <input
-                    type='file'
-                    accept='image/*'
+                    type="file"
+                    accept="image/*"
                     ref={inputRef}
                     style={{ display: 'none' }}
                     onChange={handleImage3Upload}
@@ -474,18 +492,20 @@ const AddProduct = () => {
                 </div>
               )}
               {image3 && !image4 && (
-                <div className='add-product-image'>
+                <div className="add-product-image">
                   <div
-                    className='add-product-image-overlay'
+                    className="add-product-image-overlay"
                     onClick={() => {
                       inputRef.current.click();
                     }}
                   >
-                    <span className='add-product-image-overlay-icon'>+</span>
+                    <span className="add-product-image-overlay-icon">
+                      +
+                    </span>
                   </div>
                   <input
-                    type='file'
-                    accept='image/*'
+                    type="file"
+                    accept="image/*"
                     ref={inputRef}
                     style={{ display: 'none' }}
                     onChange={handleImage4Upload}
@@ -494,19 +514,19 @@ const AddProduct = () => {
               )}
             </div>
           </div>
-          <div className='btns'>
+          <div className="btns">
             <button
               onClick={(e) => {
                 e.preventDefault();
                 handleReset();
               }}
-              className='btn btn-sec'
+              className="btn btn-sec"
             >
               Réinitialiser
             </button>
             {!isLoading ? (
               <button
-                className='btn'
+                className="btn"
                 onClick={(e) => {
                   handleOnSubmit(e);
                   if (empty.length === 0 && !err) {
@@ -521,7 +541,7 @@ const AddProduct = () => {
                 onClick={(e) => {
                   e.preventDefault();
                 }}
-                className='btn'
+                className="btn"
               >
                 <Spinner />
               </button>

@@ -33,7 +33,7 @@ const AdminMagasinList = () => {
   const [err, setErr] = useState();
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/categories/`)
+      .get(`https://mystorify-api.cyclic.app/api/categories/`)
       .then((res) => {
         console.log(res.data);
         setCategories(res.data);
@@ -42,7 +42,7 @@ const AdminMagasinList = () => {
   }, []);
   useEffect(() => {
     axios
-      .post(`http://localhost:3000/api/magasins/dash`, {
+      .post(`https://mystorify-api.cyclic.app/api/magasins/dash`, {
         dateOrder,
         categorieId,
         nom,
@@ -66,7 +66,7 @@ const AdminMagasinList = () => {
   }, [dateOrder, categorieId, nom, valide]);
   const getNext = (take, skip, last) => {
     axios
-      .post(`http://localhost:3000/api/magasins/paged/`, {
+      .post(`https://mystorify-api.cyclic.app/api/magasins/paged/`, {
         take,
         skip,
         dateOrder,
@@ -86,7 +86,7 @@ const AdminMagasinList = () => {
   };
   const getPrev = (take, skip, last) => {
     axios
-      .post(`http://localhost:3000/api/magasins/paged/`, {
+      .post(`https://mystorify-api.cyclic.app/api/magasins/paged/`, {
         take,
         skip,
         dateOrder,
@@ -105,12 +105,12 @@ const AdminMagasinList = () => {
 
   return (
     <>
-      <div className='dash-content dash-products'>
-        <div className='head'>
+      <div className="dash-content dash-products">
+        <div className="head">
           <h2>Liste des Magasins</h2>
         </div>
         <div
-          className='form-flex'
+          className="form-flex"
           style={{
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -119,7 +119,7 @@ const AdminMagasinList = () => {
         >
           <div>
             <label style={{}}>Etat </label>
-            <div className='dropdown' style={{ zIndex: '5' }}>
+            <div className="dropdown" style={{ zIndex: '5' }}>
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -142,7 +142,7 @@ const AdminMagasinList = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className='dropdown-methods'
+                    className="dropdown-methods"
                   >
                     <li
                       onClick={() => {
@@ -180,7 +180,7 @@ const AdminMagasinList = () => {
 
           <div>
             <label style={{}}>Trier par </label>
-            <div className='dropdown' style={{ zIndex: '5' }}>
+            <div className="dropdown" style={{ zIndex: '5' }}>
               <button
                 onClick={(e) => {
                   e.preventDefault();
@@ -203,7 +203,7 @@ const AdminMagasinList = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className='dropdown-methods'
+                    className="dropdown-methods"
                   >
                     <li
                       onClick={() => {
@@ -230,7 +230,10 @@ const AdminMagasinList = () => {
           </div>
           <div>
             <label style={{}}>Catégorie </label>
-            <div className='dropdown' style={{ zIndex: '5', marginBlock: '0' }}>
+            <div
+              className="dropdown"
+              style={{ zIndex: '5', marginBlock: '0' }}
+            >
               <button
                 style={{ marginBlock: '0' }}
                 onClick={(e) => {
@@ -254,7 +257,7 @@ const AdminMagasinList = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className='dropdown-methods'
+                    className="dropdown-methods"
                   >
                     {categories?.map((cate) => {
                       return (
@@ -283,11 +286,11 @@ const AdminMagasinList = () => {
               </AnimatePresence>
             </div>
           </div>
-          <div className='search-input-holder'>
-            <FiSearch className='search-icon' color='#3B4C68' />
+          <div className="search-input-holder">
+            <FiSearch className="search-icon" color="#3B4C68" />
             <input
-              type='text'
-              className='search-input'
+              type="text"
+              className="search-input"
               onChange={(e) => {
                 setNom(e.target.value);
               }}
@@ -296,7 +299,7 @@ const AdminMagasinList = () => {
         </div>
 
         <div
-          className='list'
+          className="list"
           style={{
             paddingRight: '2em',
             marginTop: '3em',
@@ -304,14 +307,14 @@ const AdminMagasinList = () => {
             paddingBottom: '.7em',
           }}
         >
-          <ul className=' head magasins'>
+          <ul className=" head magasins">
             <li>Nom du Magasin</li>
             <li>Propriétaire</li>
             <li>Catégorie</li>
           </ul>
         </div>
         {!err && (
-          <div className='dash-products-wrapper'>
+          <div className="dash-products-wrapper">
             {magasins &&
               magasins.map((magasin) => {
                 return (
@@ -325,8 +328,8 @@ const AdminMagasinList = () => {
           </div>
         )}
         {!err && (
-          <div className='pages'>
-            <p className='number'>
+          <div className="pages">
+            <p className="number">
               {counter} de {total} magasins
             </p>
 
@@ -336,9 +339,13 @@ const AdminMagasinList = () => {
                   {counter > 10 && (
                     <>
                       <AiOutlineLeft
-                        className='arrow'
+                        className="arrow"
                         onClick={() => {
-                          getPrev(10, counter - magasins.length - 10, false);
+                          getPrev(
+                            10,
+                            counter - magasins.length - 10,
+                            false
+                          );
                           setPage((current) => --current);
                         }}
                       />
@@ -346,9 +353,11 @@ const AdminMagasinList = () => {
                   )}
                   {page <= Math.ceil(total / 10) && (
                     <span
-                      className='number'
+                      className="number"
                       style={
-                        page === 1 ? { color: '#2E47BD' } : { color: '#3B4C68' }
+                        page === 1
+                          ? { color: '#2E47BD' }
+                          : { color: '#3B4C68' }
                       }
                       onClick={() => {
                         getNext(10, 0, false);
@@ -360,16 +369,20 @@ const AdminMagasinList = () => {
                     </span>
                   )}
                   {page > 1 && (
-                    <span className='number' style={{ color: '#2E47BD' }}>
+                    <span
+                      className="number"
+                      style={{ color: '#2E47BD' }}
+                    >
                       ... {page}
                     </span>
                   )}
                   {page < Math.ceil(total / 10) && (
                     <span
-                      className='number'
+                      className="number"
                       onClick={() => {
                         console.log(total);
-                        if (total % 10 === 0) getNext(10, total - 10, true);
+                        if (total % 10 === 0)
+                          getNext(10, total - 10, true);
                         else getNext(10, total - (total % 10), true);
                         setCounter(total);
                         setPage(Math.ceil(total / 10));
@@ -380,7 +393,7 @@ const AdminMagasinList = () => {
                   )}
                   {counter < total && (
                     <AiOutlineRight
-                      className='arrow'
+                      className="arrow"
                       onClick={() => {
                         getNext(10, counter, false);
                         setPage((current) => ++current);
@@ -395,7 +408,11 @@ const AdminMagasinList = () => {
         )}
         {err && (
           <h3
-            style={{ textAlign: 'center', color: '#3B4C68', marginTop: '3em' }}
+            style={{
+              textAlign: 'center',
+              color: '#3B4C68',
+              marginTop: '3em',
+            }}
           >
             {err}
           </h3>

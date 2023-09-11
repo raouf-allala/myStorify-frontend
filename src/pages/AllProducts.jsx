@@ -16,7 +16,7 @@ const AllProducts = () => {
   useEffect(() => {
     window.scrollTo({ top: true });
     axios
-      .get('http://localhost:3000/api/produits')
+      .get('https://mystorify-api.cyclic.app/api/produits')
       .then((res) => {
         const productsWithAvgRating = res.data.map((product) => {
           const { Review } = product;

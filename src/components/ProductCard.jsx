@@ -16,7 +16,7 @@ const ProductCard = ({ product, forceUpdate }) => {
   useEffect(() => {
     if (isAuthenticated) {
       axios
-        .get('http://localhost:3000/api/produits/user', {
+        .get('https://mystorify-api.cyclic.app/api/produits/user', {
           withCredentials: true,
         })
         .then((res) => {
@@ -51,7 +51,7 @@ const ProductCard = ({ product, forceUpdate }) => {
   const handleRemoveWishlist = () => {
     axios
       .delete(
-        `http://localhost:3000/api/produits/user/${wishlistId}`,
+        `https://mystorify-api.cyclic.app/api/produits/user/${wishlistId}`,
         {
           withCredentials: true,
         }
@@ -71,7 +71,7 @@ const ProductCard = ({ product, forceUpdate }) => {
     if (isAuthenticated) {
       axios
         .post(
-          `http://localhost:3000/api/produits/user`,
+          `https://mystorify-api.cyclic.app/api/produits/user`,
           { produitId: product?.id },
           { withCredentials: true }
         )

@@ -10,14 +10,14 @@ const Wishlist = () => {
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
   useEffect(() => {
     axios
-      .get('http://localhost:3000/api/produits/user', {
+      .get('https://mystorify-api.cyclic.app/api/produits/user', {
         withCredentials: true,
       })
       .then((res) => {
         setWishlist(res.data);
       });
     axios
-      .get('http://localhost:3000/api/produits/random/4', {
+      .get('https://mystorify-api.cyclic.app/api/produits/random/4', {
         withCredentials: true,
       })
       .then((res) => {

@@ -19,9 +19,12 @@ const Products = () => {
   useEffect(() => {
     window.scrollTo({ top: true });
     axios
-      .post('http://localhost:3000/api/produits/categorie', {
-        sous_CategorieId: category,
-      })
+      .post(
+        'https://mystorify-api.cyclic.app/api/produits/categorie',
+        {
+          sous_CategorieId: category,
+        }
+      )
       .then((res) => {
         const productsWithAvgRating = res.data.map((product) => {
           const { Review } = product;

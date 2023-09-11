@@ -9,7 +9,7 @@ const AjouterCom = ({ setOpenReview, productId, forceUpdate }) => {
     e.preventDefault();
     axios
       .post(
-        'http://localhost:3000/api/produits/user/review',
+        'https://mystorify-api.cyclic.app/api/produits/user/review',
         {
           productId,
           rating,

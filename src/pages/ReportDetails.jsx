@@ -13,7 +13,7 @@ const ReportDetails = () => {
   const [date, setDate] = useState();
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/users/reports/${id}`)
+      .get(`https://mystorify-api.cyclic.app/api/users/reports/${id}`)
       .then((res) => {
         console.log(res.data);
         setReport(res.data);
@@ -22,21 +22,22 @@ const ReportDetails = () => {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <div className='dash-content'>
-      <div className='head'>
+    <div className="dash-content">
+      <div className="head">
         <h2>Voir les details de cette reclamation</h2>
         <p style={{ fontWeight: 'lighter' }}>
           Cette reclamation a été envoyer le {date && date[0] + ' '} à{' '}
           {date && date[1].substring(0, 8)} par l'utilisateur
           <span style={{ fontWeight: '500' }}>
-            {' ' + report?.utilisateur?.nom + ' '} {report?.utilisateur?.prenom}
+            {' ' + report?.utilisateur?.nom + ' '}{' '}
+            {report?.utilisateur?.prenom}
           </span>
         </p>
         <h3>Déscription : </h3>
         <p style={{ fontWeight: 'lighter' }}>{report?.description}</p>
       </div>
       <div
-        className='btns'
+        className="btns"
         style={{
           display: 'flex',
           justifyContent: 'flex-end',
@@ -44,7 +45,7 @@ const ReportDetails = () => {
         }}
       >
         <button
-          className='btn'
+          className="btn"
           onClick={() => {
             navigate('/dashboard/admin/reports');
           }}

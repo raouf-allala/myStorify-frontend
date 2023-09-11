@@ -36,7 +36,7 @@ const EditEmail = () => {
     else
       axios
         .post(
-          'http://localhost:3000/api/users/verifyEditEmail',
+          'https://mystorify-api.cyclic.app/api/users/verifyEditEmail',
           { nom, newEmail },
           {
             withCredentials: true,
@@ -52,7 +52,7 @@ const EditEmail = () => {
   };
 
   return (
-    <div className='right'>
+    <div className="right">
       <h2>Email De Profile</h2>
       <h3 style={{ marginBottom: '1em', color: 'black' }}>
         Modifier L'adresse Email:
@@ -60,27 +60,27 @@ const EditEmail = () => {
 
       {!done && (
         <form>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
-              <label htmlFor=''>Email Actuelle</label>
+              <label htmlFor="">Email Actuelle</label>
               <input
-                id='email'
-                placeholder='Email'
-                type='text'
-                className='login-input'
+                id="email"
+                placeholder="Email"
+                type="text"
+                className="login-input"
                 value={email}
                 disabled
               />
             </div>
           </div>
-          <div className='form-flex'>
+          <div className="form-flex">
             <div>
-              <label htmlFor=''>Nouveau Email</label>
+              <label htmlFor="">Nouveau Email</label>
               <input
-                id='newEmail'
-                placeholder='Nouveau Email'
-                type='text'
-                className='login-input'
+                id="newEmail"
+                placeholder="Nouveau Email"
+                type="text"
+                className="login-input"
                 style={{ marginBottom: '.5em' }}
                 onChange={(e) => {
                   setNewEmail(e.target.value);
@@ -92,14 +92,16 @@ const EditEmail = () => {
                 }}
               />
               {!validEmail && (
-                <p className='err'>Cette Adresse email est invalide !</p>
+                <p className="err">
+                  Cette Adresse email est invalide !
+                </p>
               )}
-              {err && <p className='err'>{err}</p>}
+              {err && <p className="err">{err}</p>}
             </div>
           </div>
-          <div className='btns'>
+          <div className="btns">
             <button
-              className='btn'
+              className="btn"
               onClick={(e) => {
                 e.preventDefault();
                 handleOnSubmit(e);
@@ -113,7 +115,7 @@ const EditEmail = () => {
         </form>
       )}
       {done && (
-        <div className='right-content'>
+        <div className="right-content">
           <EmailSent />
         </div>
       )}

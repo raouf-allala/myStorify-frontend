@@ -25,12 +25,15 @@ const UsersList = () => {
   const [err, setErr] = useState();
   useEffect(() => {
     axios
-      .post(`http://localhost:3000/api/users/dash/admin/`, {
-        dateOrder,
-        nom,
-        hasStore,
-        livreur,
-      })
+      .post(
+        `https://mystorify-api.cyclic.app/api/users/dash/admin/`,
+        {
+          dateOrder,
+          nom,
+          hasStore,
+          livreur,
+        }
+      )
       .then((res) => {
         setUsers(res.data.users);
         setTotal(res.data.total);
@@ -49,7 +52,7 @@ const UsersList = () => {
   const getNext = (take, skip, last) => {
     axios
       .post(
-        `http://localhost:3000/api/produits/paged/${magasin.id}`,
+        `https://mystorify-api.cyclic.app/api/produits/paged/${magasin.id}`,
         {
           take,
           skip,
@@ -71,13 +74,16 @@ const UsersList = () => {
   };
   const getPrev = (take, skip, last) => {
     axios
-      .post(`http://localhost:3000/api/users/admin/paged`, {
-        take,
-        skip,
-        hasStore,
-        dateOrder,
-        nom,
-      })
+      .post(
+        `https://mystorify-api.cyclic.app/api/users/admin/paged`,
+        {
+          take,
+          skip,
+          hasStore,
+          dateOrder,
+          nom,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setUsers(res.data);

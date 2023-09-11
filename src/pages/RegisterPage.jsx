@@ -27,11 +27,17 @@ const RegisterPage = () => {
     'email',
     'password',
   ]);
-  const [emptySec, setEmptySec] = useState(['telephone', 'adresse', 'wilaya']);
+  const [emptySec, setEmptySec] = useState([
+    'telephone',
+    'adresse',
+    'wilaya',
+  ]);
   const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector(
+    (state) => state.auth.isAuthenticated
+  );
   if (isAuthenticated) {
-    return <Navigate to='/' />;
+    return <Navigate to="/" />;
   }
 
   const handleErrFirst = (e) => {
@@ -87,9 +93,13 @@ const RegisterPage = () => {
     };
 
     axios
-      .post('http://localhost:3000/api/users/registre', user, {
-        withCredentials: true,
-      })
+      .post(
+        'https://mystorify-api.cyclic.app/api/users/registre',
+        user,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setDone(true);
       })
@@ -101,24 +111,24 @@ const RegisterPage = () => {
   console.log(phoneExp.test(telephone));
   return (
     <main>
-      <div className='container'>
-        <div className='login-flex'>
-          <div className='left'>
-            <img src={Picture} alt='' />
+      <div className="container">
+        <div className="login-flex">
+          <div className="left">
+            <img src={Picture} alt="" />
           </div>
-          <div className='right inscrire'>
+          <div className="right inscrire">
             {!done && (
-              <form className='right-content'>
+              <form className="right-content">
                 <h1>Créer un compte</h1>
                 <p>Entrez vos coordonnées ci-dessous</p>
-                {err && <p className='err'>{err}</p>}
+                {err && <p className="err">{err}</p>}
                 {!showNext && (
                   <>
                     <input
-                      id='nom'
-                      placeholder='Nom'
-                      type='text'
-                      className='login-input'
+                      id="nom"
+                      placeholder="Nom"
+                      type="text"
+                      className="login-input"
                       value={nom}
                       onChange={(e) => {
                         setNom(e.target.value);
@@ -126,10 +136,10 @@ const RegisterPage = () => {
                       }}
                     />
                     <input
-                      id='prenom'
-                      placeholder='Prénom'
-                      type='text'
-                      className='login-input'
+                      id="prenom"
+                      placeholder="Prénom"
+                      type="text"
+                      className="login-input"
                       value={prenom}
                       onChange={(e) => {
                         setPrenom(e.target.value);
@@ -137,10 +147,10 @@ const RegisterPage = () => {
                       }}
                     />
                     <input
-                      id='email'
-                      placeholder='Email'
-                      type='text'
-                      className='login-input'
+                      id="email"
+                      placeholder="Email"
+                      type="text"
+                      className="login-input"
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
@@ -149,13 +159,15 @@ const RegisterPage = () => {
                       onFocus={() => setValidEmail(true)}
                     />
                     {!validEmail && (
-                      <p className='err'>Cette Adresse email est invalide !</p>
+                      <p className="err">
+                        Cette Adresse email est invalide !
+                      </p>
                     )}
                     <input
-                      id='password'
-                      placeholder='Password'
-                      type='password'
-                      className='login-input'
+                      id="password"
+                      placeholder="Password"
+                      type="password"
+                      className="login-input"
                       value={password}
                       onChange={(e) => {
                         setPassword(e.target.value);
@@ -167,10 +179,10 @@ const RegisterPage = () => {
                 {showNext && (
                   <>
                     <input
-                      id='telephone'
-                      placeholder='Telephone'
-                      type='text'
-                      className='login-input'
+                      id="telephone"
+                      placeholder="Telephone"
+                      type="text"
+                      className="login-input"
                       value={telephone}
                       onChange={(e) => {
                         setTelephone(e.target.value);
@@ -179,29 +191,29 @@ const RegisterPage = () => {
                       onFocus={() => setValidPhone(true)}
                     />
                     {!validPhone ? (
-                      <p className='err'>
+                      <p className="err">
                         Ce numéro de telephone est invalide !
                       </p>
                     ) : (
                       ''
                     )}
                     <input
-                      id='adresse'
-                      placeholder='Adresse'
-                      type='text'
+                      id="adresse"
+                      placeholder="Adresse"
+                      type="text"
                       value={adresse}
-                      className='login-input'
+                      className="login-input"
                       onChange={(e) => {
                         setAdresse(e.target.value);
                         handleErrSec(e);
                       }}
                     />
                     <input
-                      id='wilaya'
-                      placeholder='Wilaya'
-                      type='text'
+                      id="wilaya"
+                      placeholder="Wilaya"
+                      type="text"
                       value={wilaya}
-                      className='login-input'
+                      className="login-input"
                       onChange={(e) => {
                         setWilaya(e.target.value);
                         handleErrSec(e);
@@ -209,10 +221,10 @@ const RegisterPage = () => {
                     />
                   </>
                 )}
-                <div className='register-cta'>
+                <div className="register-cta">
                   {!showNext ? (
                     <button
-                      className='btn'
+                      className="btn"
                       onClick={(e) => {
                         e.preventDefault();
                         handleOnSuivant(e);
@@ -228,9 +240,9 @@ const RegisterPage = () => {
                       Suivant
                     </button>
                   ) : (
-                    <div className='register-cta-next'>
+                    <div className="register-cta-next">
                       <button
-                        className='btn btn-back'
+                        className="btn btn-back"
                         onClick={(e) => {
                           e.preventDefault();
                           setShowNext(false);
@@ -240,7 +252,7 @@ const RegisterPage = () => {
                         <MdKeyboardArrowLeft />
                       </button>
                       <button
-                        className='btn submit'
+                        className="btn submit"
                         onClick={(e) => {
                           console.log(phoneExp.test(telephone));
                           handleOnSubmit(e);
@@ -259,10 +271,10 @@ const RegisterPage = () => {
                     </div>
                   )}
                   <Link
-                    className='btn btn-google'
-                    to='http://localhost:3000/api/users/auth/google/'
+                    className="btn btn-google"
+                    to="https://mystorify-api.cyclic.app/api/users/auth/google/"
                   >
-                    <img src={Google} alt='' />
+                    <img src={Google} alt="" />
                     <p>Inscrire avec Google</p>
                   </Link>
                   <p style={{ textAlign: 'center' }}>
@@ -273,7 +285,7 @@ const RegisterPage = () => {
                         textDecoration: 'underline',
                         fontWeight: 500,
                       }}
-                      to='/login'
+                      to="/login"
                     >
                       Connecter
                     </Link>
@@ -283,11 +295,12 @@ const RegisterPage = () => {
             )}
 
             {done && (
-              <div className='right-content'>
+              <div className="right-content">
                 <h1>Créer un compte</h1>
                 <p>Entrez vos coordonnées ci-dessous</p>
-                <p className='email-sent'>
-                  Un email a éte envoyer a votre email address pour confirmer !
+                <p className="email-sent">
+                  Un email a éte envoyer a votre email address pour
+                  confirmer !
                 </p>
               </div>
             )}

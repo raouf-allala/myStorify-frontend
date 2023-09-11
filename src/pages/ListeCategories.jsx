@@ -33,7 +33,7 @@ const ListeCategories = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/categories/`)
+      .get(`https://mystorify-api.cyclic.app/api/categories/`)
       .then((res) => {
         console.log(res.data);
         setCategories(res.data);
@@ -51,7 +51,9 @@ const ListeCategories = () => {
     if (deletedCate === true) {
       const id = categorieId;
       axios
-        .delete(`http://localhost:3000/api/categories/${id}`)
+        .delete(
+          `https://mystorify-api.cyclic.app/api/categories/${id}`
+        )
         .then((res) => {
           console.log(res.data);
           setCategories(
@@ -70,9 +72,12 @@ const ListeCategories = () => {
       const id = sousId;
       console.log(categorieId);
       axios
-        .post(`http://localhost:3000/api/categories/sous/${id}`, {
-          categorieId,
-        })
+        .post(
+          `https://mystorify-api.cyclic.app/api/categories/sous/${id}`,
+          {
+            categorieId,
+          }
+        )
         .then((res) => {
           console.log(res.data);
 
@@ -121,10 +126,13 @@ const ListeCategories = () => {
   };
   const updateCate = (id) => {
     axios
-      .patch(`http://localhost:3000/api/categories/${id}`, {
-        nom,
-        desc,
-      })
+      .patch(
+        `https://mystorify-api.cyclic.app/api/categories/${id}`,
+        {
+          nom,
+          desc,
+        }
+      )
 
       .then((res) => {
         console.log(res.data);
@@ -134,11 +142,14 @@ const ListeCategories = () => {
   };
   const updateSousCate = (id) => {
     axios
-      .patch(`http://localhost:3000/api/categories/sous/${id}`, {
-        nom,
-        desc,
-        categorieId,
-      })
+      .patch(
+        `https://mystorify-api.cyclic.app/api/categories/sous/${id}`,
+        {
+          nom,
+          desc,
+          categorieId,
+        }
+      )
 
       .then((res) => {
         console.log(res.data);
@@ -148,7 +159,7 @@ const ListeCategories = () => {
   };
   const addSousCate = () => {
     axios
-      .post(`http://localhost:3000/api/categories/sous/`, {
+      .post(`https://mystorify-api.cyclic.app/api/categories/sous/`, {
         nomAdd,
         descAdd,
         categorieId,

@@ -78,7 +78,7 @@ const AddUser = () => {
   const handleAdd = () => {
     axios
       .post(
-        'http://localhost:3000/api/users/dash/admin/add',
+        'https://mystorify-api.cyclic.app/api/users/dash/admin/add',
         {
           nom,
           prenom,
@@ -102,17 +102,17 @@ const AddUser = () => {
       });
   };
   return (
-    <div className='dash-content'>
-      <div className='head'>
+    <div className="dash-content">
+      <div className="head">
         <h2>Ajouter un utilisateur</h2>
         <p>Remplire la formulaire ci-dessus :</p>
       </div>
-      <div className='edit-profile'>
-        <div className='form-flex'>
+      <div className="edit-profile">
+        <div className="form-flex">
           <div>
             <label>Type</label>
             <div
-              className='dropdown'
+              className="dropdown"
               style={{ zIndex: '5', marginTop: '.5em' }}
             >
               <button
@@ -137,7 +137,7 @@ const AddUser = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className='dropdown-methods'
+                    className="dropdown-methods"
                   >
                     <li
                       onClick={(e) => {
@@ -161,58 +161,58 @@ const AddUser = () => {
                 )}
               </AnimatePresence>
             </div>
-            {err && <p className='err'>{err}</p>}
+            {err && <p className="err">{err}</p>}
           </div>
           <div></div>
         </div>
         {type === 'Utilisateur' ? (
           <form>
-            <div className='form-flex'>
+            <div className="form-flex">
               <div>
-                <label htmlFor=''>Nom</label>
+                <label htmlFor="">Nom</label>
                 <input
-                  id='nom'
+                  id="nom"
                   onChange={(e) => {
                     setNom(e.target.value);
                     handleErr(e);
                   }}
                   value={nom}
-                  type='text'
+                  type="text"
                 />
               </div>
               <div>
-                <label htmlFor=''>Prénom</label>
+                <label htmlFor="">Prénom</label>
                 <input
-                  id='prenom'
+                  id="prenom"
                   onChange={(e) => {
                     setErr('');
                     setPrenom(e.target.value);
                     handleErr(e);
                   }}
                   value={prenom}
-                  type='text'
+                  type="text"
                 />
               </div>
             </div>
-            <div className='form-flex'>
+            <div className="form-flex">
               <div>
-                <label htmlFor=''>Addresse</label>
+                <label htmlFor="">Addresse</label>
                 <input
-                  id='adresse'
+                  id="adresse"
                   onChange={(e) => {
                     setErr('');
                     setAdresse(e.target.value);
                     handleErr(e);
                   }}
                   value={adresse}
-                  type='text'
+                  type="text"
                 />
               </div>
               <div>
-                <label htmlFor=''>Téléphone</label>
+                <label htmlFor="">Téléphone</label>
                 <input
                   style={{ marginBottom: '.5em' }}
-                  id='telephone'
+                  id="telephone"
                   onChange={(e) => {
                     setErr('');
                     setTelephone(e.target.value);
@@ -222,75 +222,77 @@ const AddUser = () => {
                     setValidPhone(true);
                   }}
                   value={telephone}
-                  type='text'
+                  type="text"
                 />
                 {!validPhone && (
-                  <p className='err'>Ce numéro de telephone est invalide !</p>
+                  <p className="err">
+                    Ce numéro de telephone est invalide !
+                  </p>
                 )}
               </div>
             </div>
-            <div className='form-flex'>
+            <div className="form-flex">
               <div>
-                <label htmlFor=''>Wilaya</label>
+                <label htmlFor="">Wilaya</label>
                 <input
-                  id='wilaya'
+                  id="wilaya"
                   onChange={(e) => {
                     setErr('');
                     handleErr(e);
                     setWilaya(e.target.value);
                   }}
                   value={wilaya}
-                  type='text'
+                  type="text"
                 />
               </div>
               <div>
-                <label htmlFor=''>Adresse email</label>
+                <label htmlFor="">Adresse email</label>
                 <input
-                  id='email'
+                  id="email"
                   onChange={(e) => {
                     setErr('');
                     setEmail(e.target.value);
                     handleErr(e);
                   }}
                   value={email}
-                  type='text'
+                  type="text"
                 />
                 {!validEmail && (
-                  <p className='err' style={{ marginTop: '.5em' }}>
+                  <p className="err" style={{ marginTop: '.5em' }}>
                     Cette adresse email est invalide !
                   </p>
                 )}
               </div>
             </div>
-            <div className='form-flex'>
+            <div className="form-flex">
               <div>
-                <label htmlFor=''>Mot de pass</label>
+                <label htmlFor="">Mot de pass</label>
                 <input
-                  id='password'
+                  id="password"
                   onChange={(e) => {
                     setErr('');
                     setPassword(e.target.value);
                     handleErr(e);
                   }}
                   value={password}
-                  type='text'
+                  type="text"
                 />
               </div>
               <div></div>
             </div>
 
-            <div className='btns'>
+            <div className="btns">
               <button
                 onClick={(e) => {
                   e.preventDefault();
                   handleReset();
                 }}
-                className='btn btn-sec'
+                className="btn btn-sec"
               >
                 Réinitialiser
               </button>
               <button
-                className='btn'
+                className="btn"
                 onClick={(e) => {
                   handleOnSubmit(e);
                   setValidPhone(phoneExp.test(telephone));
@@ -311,82 +313,86 @@ const AddUser = () => {
           </form>
         ) : (
           <form>
-            <div className='form-flex'>
+            <div className="form-flex">
               <div>
-                <label htmlFor=''>Nom</label>
+                <label htmlFor="">Nom</label>
                 <input
-                  id='nom'
+                  id="nom"
                   onChange={(e) => {
                     setNom(e.target.value);
                     handleErr(e);
                   }}
                   value={nom}
-                  type='text'
+                  type="text"
                 />
               </div>
               <div>
-                <label htmlFor=''>Prénom</label>
+                <label htmlFor="">Prénom</label>
                 <input
-                  id='prenom'
+                  id="prenom"
                   onChange={(e) => {
                     setErr('');
                     setPrenom(e.target.value);
                     handleErr(e);
                   }}
                   value={prenom}
-                  type='text'
+                  type="text"
                 />
               </div>
             </div>
-            <div className='form-flex'>
+            <div className="form-flex">
               <div>
-                <label htmlFor=''>Adresse email</label>
+                <label htmlFor="">Adresse email</label>
                 <input
-                  id='email'
+                  id="email"
                   onChange={(e) => {
                     setErr('');
                     setEmail(e.target.value);
                     handleErr(e);
                   }}
                   value={email}
-                  type='text'
+                  type="text"
                 />
                 {!validEmail && (
-                  <p className='err' style={{ marginTop: '.5em' }}>
+                  <p className="err" style={{ marginTop: '.5em' }}>
                     Cette adresse email est invalide !
                   </p>
                 )}
               </div>
               <div>
-                <label htmlFor=''>Mot de pass</label>
+                <label htmlFor="">Mot de pass</label>
                 <input
-                  id='password'
+                  id="password"
                   onChange={(e) => {
                     setErr('');
                     setPassword(e.target.value);
                     handleErr(e);
                   }}
                   value={password}
-                  type='text'
+                  type="text"
                 />
               </div>
             </div>
-            <div className='btns'>
+            <div className="btns">
               <button
                 onClick={(e) => {
                   e.preventDefault();
                   handleReset();
                 }}
-                className='btn btn-sec'
+                className="btn btn-sec"
               >
                 Réinitialiser
               </button>
               <button
-                className='btn'
+                className="btn"
                 onClick={(e) => {
                   handleOnSubmit(e);
                   setValidEmail(emailExp.test(email));
-                  if (emailExp.test(email) && empty.length === 0 && !err) {
+                  if (
+                    emailExp.test(email) &&
+                    empty.length === 0 &&
+                    !err
+                  ) {
                     handleAdd();
                   }
                 }}

@@ -23,7 +23,7 @@ const ForgotPass = () => {
   const handleSubmit = () => {
     axios
       .post(
-        'http://localhost:3000/api/users/forgotPass',
+        'https://mystorify-api.cyclic.app/api/users/forgotPass',
         { email },
         {
           withCredentials: true,
@@ -40,22 +40,24 @@ const ForgotPass = () => {
   return (
     <>
       <main>
-        <div className='container'>
-          <div className='login-flex'>
-            <div className='left'>
-              <img src={Picture} alt='' />
+        <div className="container">
+          <div className="login-flex">
+            <div className="left">
+              <img src={Picture} alt="" />
             </div>
-            <div className='right'>
+            <div className="right">
               {!done && (
-                <form className='right-content'>
+                <form className="right-content">
                   <h1>avez-vous oublié le mot de passe?</h1>
-                  <p>Entrez l'adresse email de votre compte ci-dessous</p>
-                  {err && <p className='err'>{err}</p>}
+                  <p>
+                    Entrez l'adresse email de votre compte ci-dessous
+                  </p>
+                  {err && <p className="err">{err}</p>}
                   <input
-                    id='email'
-                    placeholder='Email'
-                    type='text'
-                    className='login-input'
+                    id="email"
+                    placeholder="Email"
+                    type="text"
+                    className="login-input"
                     onChange={(e) => {
                       setEmail(e.target.value);
                       handleErr(e);
@@ -66,11 +68,13 @@ const ForgotPass = () => {
                     }}
                   />
                   {!validEmail && (
-                    <p className='err'>Cette Adresse email est invalide !</p>
+                    <p className="err">
+                      Cette Adresse email est invalide !
+                    </p>
                   )}
-                  <div className='login-cta'>
+                  <div className="login-cta">
                     <button
-                      className='btn'
+                      className="btn"
                       onClick={(e) => {
                         e.preventDefault();
                         handleOnSubmit(e);
@@ -80,14 +84,14 @@ const ForgotPass = () => {
                     >
                       Suivant
                     </button>
-                    <Link className='btn btn-secondary' to='/login'>
+                    <Link className="btn btn-secondary" to="/login">
                       Login
                     </Link>
                   </div>
                 </form>
               )}
               {done && (
-                <div className='right-content'>
+                <div className="right-content">
                   <EmailSent />
                 </div>
               )}

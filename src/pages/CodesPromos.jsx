@@ -15,7 +15,9 @@ const CodesPromos = () => {
   const [deletedCode, setDeletedCode] = useState(false);
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/magasins/codesPromos`)
+      .get(
+        `https://mystorify-api.cyclic.app/api/magasins/codesPromos`
+      )
       .then((res) => {
         console.log(res.data);
         setCodes(res.data);
@@ -26,7 +28,9 @@ const CodesPromos = () => {
     const id = deletedId;
     if (deletedCode === true) {
       axios
-        .delete(`http://localhost:3000/api/magasins/codesPromos/${id}`)
+        .delete(
+          `https://mystorify-api.cyclic.app/api/magasins/codesPromos/${id}`
+        )
         .then((res) => {
           console.log(res);
           //navigate('/dashboard/admin/products');
@@ -39,11 +43,14 @@ const CodesPromos = () => {
   }, [deletedCode]);
   const addCode = () => {
     axios
-      .post(`http://localhost:3000/api/magasins/codesPromos/add`, {
-        code,
-        dateFin,
-        percentage,
-      })
+      .post(
+        `https://mystorify-api.cyclic.app/api/magasins/codesPromos/add`,
+        {
+          code,
+          dateFin,
+          percentage,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setCodes(res.data);
@@ -82,9 +89,9 @@ const CodesPromos = () => {
     setErr('');
   };
   return (
-    <div className='dash-content '>
-      <div className='edit-profile'>
-        <div className='head'>
+    <div className="dash-content ">
+      <div className="edit-profile">
+        <div className="head">
           <h2> Ajouter et counsulter la liste des codes promos</h2>
           <p
             onClick={() => {
@@ -94,12 +101,12 @@ const CodesPromos = () => {
             Ajouter un code ci dessus :
           </p>
         </div>
-        <div className='form-flex' style={{ alignItems: 'center' }}>
+        <div className="form-flex" style={{ alignItems: 'center' }}>
           <div>
             <label>Nom du code</label>
             <input
-              id='nom'
-              type='text'
+              id="nom"
+              type="text"
               value={code}
               onChange={(e) => {
                 setCode(e.target.value);
@@ -110,8 +117,8 @@ const CodesPromos = () => {
           <div>
             <label>Date Fin</label>
             <input
-              id='date'
-              type='date'
+              id="date"
+              type="date"
               value={dateFin}
               onChange={(e) => {
                 setDateFin(e.target.value);
@@ -122,11 +129,11 @@ const CodesPromos = () => {
           <div>
             <label>Percentage</label>
             <input
-              id='percentage'
-              type='number'
-              min='0'
-              max='100'
-              step='1'
+              id="percentage"
+              type="number"
+              min="0"
+              max="100"
+              step="1"
               value={percentage}
               onChange={(e) => {
                 setPercentage(e.target.value);
@@ -136,15 +143,17 @@ const CodesPromos = () => {
           </div>
         </div>
 
-        <div className='form-flex'>
+        <div className="form-flex">
           <div></div>
         </div>
-        <div className='form-flex'>
+        <div className="form-flex">
           <div>
             {codes?.length !== 0 && (
               <div style={{ color: '#3B4C68' }}>
                 <h3>List des codes promos : </h3>
-                <ul style={{ paddingLeft: '1.5em', fontWeight: '500' }}>
+                <ul
+                  style={{ paddingLeft: '1.5em', fontWeight: '500' }}
+                >
                   {codes?.map((codePromo) => {
                     return (
                       <li
@@ -165,9 +174,12 @@ const CodesPromos = () => {
                           }}
                         >
                           <div>
-                            <p>Percentage : {codePromo?.percentage}%</p>
                             <p>
-                              Date Fin : {codePromo?.data_fin.split('T')[0]}
+                              Percentage : {codePromo?.percentage}%
+                            </p>
+                            <p>
+                              Date Fin :{' '}
+                              {codePromo?.data_fin.split('T')[0]}
                             </p>
                           </div>
                           <BsTrash
@@ -193,21 +205,25 @@ const CodesPromos = () => {
         </div>
       </div>
       <div
-        className='btns'
-        style={{ display: 'flex', justifyContent: 'flex-end', gap: '1em' }}
+        className="btns"
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          gap: '1em',
+        }}
       >
         <button
           onClick={(e) => {
             e.preventDefault();
             handleReset();
           }}
-          className='btn btn-sec'
+          className="btn btn-sec"
         >
           Réinitialiser
         </button>
 
         <button
-          className='btn'
+          className="btn"
           onClick={(e) => {
             handleOnSubmit(e);
             if (empty.length === 0 && !err) {
@@ -220,7 +236,7 @@ const CodesPromos = () => {
       </div>
       {dialogCode && (
         <Dialog
-          text1='Est ce que vous-avez sur ?'
+          text1="Est ce que vous-avez sur ?"
           setDialogCode={setDialogCode}
           setDeletedCode={setDeletedCode}
         />

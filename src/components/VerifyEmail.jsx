@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 const VerifyEamil = () => {
   useEffect(() => {
     axios
-      .get('http://localhost:3000/api/users/verifyEmail', {
+      .get('https://mystorify-api.cyclic.app/api/users/verifyEmail', {
         withCredentials: true,
       })
       .then((res) => {
@@ -19,7 +19,7 @@ const VerifyEamil = () => {
 
   return (
     <>
-      <Navigate to='/login' />
+      <Navigate to="/login" />
     </>
   );
 };

@@ -31,7 +31,7 @@ const DemandeMagasin = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/categories/`)
+      .get(`https://mystorify-api.cyclic.app/api/categories/`)
       .then((res) => {
         console.log(res.data);
         setCategories(res.data);
@@ -85,7 +85,7 @@ const DemandeMagasin = () => {
       setIsLoading(true);
       const utilisateurId = user.id;
       axios
-        .post('http://localhost:3000/api/magasins/', {
+        .post('https://mystorify-api.cyclic.app/api/magasins/', {
           nom,
           desc,
           categorieId,

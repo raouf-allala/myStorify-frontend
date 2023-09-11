@@ -60,7 +60,7 @@ const Header = ({ socket }) => {
   };
   useEffect(() => {
     axios
-      .get('http://localhost:3000/api/users/verifyToken', {
+      .get('https://mystorify-api.cyclic.app/api/users/verifyToken', {
         withCredentials: true,
       })
       .then((res) => console.log(res))

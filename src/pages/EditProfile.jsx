@@ -66,9 +66,13 @@ const EditProfile = () => {
       wilaya,
     };
     axios
-      .patch('http://localhost:3000/api/users/update', updatedUser, {
-        withCredentials: true,
-      })
+      .patch(
+        'https://mystorify-api.cyclic.app/api/users/update',
+        updatedUser,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         dispatch(authUpdate(res.data));
         setDone(true);
@@ -77,55 +81,55 @@ const EditProfile = () => {
       .catch((err) => console.log(err));
   };
   return (
-    <div className='right'>
+    <div className="right">
       {!done ? (
         <>
           <h2>Modifier Votre Profile</h2>
           <form>
-            <div className='form-flex'>
+            <div className="form-flex">
               <div>
-                <label htmlFor=''>Nom</label>
+                <label htmlFor="">Nom</label>
                 <input
-                  id='nom'
+                  id="nom"
                   onChange={(e) => {
                     setNom(e.target.value);
                     handleErr(e);
                   }}
                   value={nom}
-                  type='text'
+                  type="text"
                 />
               </div>
               <div>
-                <label htmlFor=''>Prénom</label>
+                <label htmlFor="">Prénom</label>
                 <input
-                  id='prenom'
+                  id="prenom"
                   onChange={(e) => {
                     setPrenom(e.target.value);
                     handleErr(e);
                   }}
                   value={prenom}
-                  type='text'
+                  type="text"
                 />
               </div>
             </div>
-            <div className='form-flex'>
+            <div className="form-flex">
               <div>
-                <label htmlFor=''>Addresse</label>
+                <label htmlFor="">Addresse</label>
                 <input
-                  id='adresse'
+                  id="adresse"
                   onChange={(e) => {
                     setAdresse(e.target.value);
                     handleErr(e);
                   }}
                   value={adresse}
-                  type='text'
+                  type="text"
                 />
               </div>
               <div>
-                <label htmlFor=''>Téléphone</label>
+                <label htmlFor="">Téléphone</label>
                 <input
                   style={{ marginBottom: '.5em' }}
-                  id='telephone'
+                  id="telephone"
                   onChange={(e) => {
                     setTelephone(e.target.value);
                     handleErr(e);
@@ -134,41 +138,43 @@ const EditProfile = () => {
                     setValidPhone(true);
                   }}
                   value={telephone}
-                  type='text'
+                  type="text"
                 />
                 {!validPhone && (
-                  <p className='err'>Ce numéro de telephone est invalide !</p>
+                  <p className="err">
+                    Ce numéro de telephone est invalide !
+                  </p>
                 )}
               </div>
             </div>
-            <div className='form-flex'>
+            <div className="form-flex">
               <div>
-                <label htmlFor=''>Wilaya</label>
+                <label htmlFor="">Wilaya</label>
                 <input
-                  id='wilaya'
+                  id="wilaya"
                   onChange={(e) => {
                     handleErr(e);
                     setWilaya(e.target.value);
                     handleErr(e);
                   }}
                   value={wilaya}
-                  type='text'
+                  type="text"
                 />
               </div>
               <div></div>
             </div>
-            <div className='btns'>
+            <div className="btns">
               <button
                 onClick={(e) => {
                   e.preventDefault();
                   handleReset();
                 }}
-                className='btn btn-sec'
+                className="btn btn-sec"
               >
                 Réinitialiser
               </button>
               <button
-                className='btn'
+                className="btn"
                 onClick={(e) => {
                   handleOnSubmit(e);
                   setValidPhone(phoneExp.test(telephone));
@@ -189,7 +195,7 @@ const EditProfile = () => {
           </form>
         </>
       ) : (
-        <Successs message='Votre compte a été modifié avec succès !' />
+        <Successs message="Votre compte a été modifié avec succès !" />
       )}
     </div>
   );
