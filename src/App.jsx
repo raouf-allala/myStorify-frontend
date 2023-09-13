@@ -63,7 +63,7 @@ function App() {
       <Routes>
         <Route path="/googleLogin" element={<GoogleLogin />} />
 
-        <Route path="/" element={<Header socket={socket} />}>
+        <Route path="/" element={<Header />}>
           <Route path="/" element={<Footer />}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

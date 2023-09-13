@@ -21,7 +21,7 @@ import {
 import { RiFilePaper2Line } from 'react-icons/ri';
 import { RxArrowTopRight, RxHamburgerMenu } from 'react-icons/rx';
 import axios from 'axios';
-const Header = ({ socket }) => {
+const Header = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const [showMagasins, setShowMagasins] = useState(false);
   const [search, setSearch] = useState('');
@@ -166,7 +166,7 @@ const Header = ({ socket }) => {
                     <button
                       onClick={() => {
                         setProfileOpen(!profileOpen);
-                        socket.emit(JSON.stringify(user.id), 'yoo');
+                        // socket.emit(JSON.stringify(user.id), 'yoo');
                       }}
                       className="icon"
                     >
