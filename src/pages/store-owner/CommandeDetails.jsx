@@ -14,7 +14,7 @@ const CommandeDetails = () => {
   useEffect(() => {
     const id = commandeId;
     axios
-      .get(`https://mystorify-api.cyclic.app/api/achat/${id}`, {
+      .get(`${import.meta.env.VITE_SERVER_HOST}/api/achat/${id}`, {
         withCredentials: true,
       })
       .then((res) => {

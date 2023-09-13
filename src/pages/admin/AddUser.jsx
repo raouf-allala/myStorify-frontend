@@ -78,7 +78,9 @@ const AddUser = () => {
   const handleAdd = () => {
     axios
       .post(
-        'https://mystorify-api.cyclic.app/api/users/dash/admin/add',
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/users/dash/admin/add`,
         {
           nom,
           prenom,

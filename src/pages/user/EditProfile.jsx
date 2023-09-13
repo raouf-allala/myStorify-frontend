@@ -67,7 +67,7 @@ const EditProfile = () => {
     };
     axios
       .patch(
-        'https://mystorify-api.cyclic.app/api/users/update',
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/update`,
         updatedUser,
         {
           withCredentials: true,

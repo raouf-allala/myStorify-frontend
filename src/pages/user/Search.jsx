@@ -20,7 +20,9 @@ const Search = () => {
     window.scrollTo({ top: true });
     axios
       .get(
-        `https://mystorify-api.cyclic.app/api/produits/search/${search}`
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/produits/search/${search}`
       )
       .then((res) => {
         console.log(res.data);

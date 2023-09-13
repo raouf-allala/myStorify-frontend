@@ -6,9 +6,12 @@ import { Navigate } from 'react-router-dom';
 const VerifyEamil = () => {
   useEffect(() => {
     axios
-      .get('https://mystorify-api.cyclic.app/api/users/verifyEmail', {
-        withCredentials: true,
-      })
+      .get(
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/verifyEmail`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         console.log(res);
       })

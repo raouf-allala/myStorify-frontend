@@ -33,7 +33,7 @@ const ListeCategories = () => {
 
   useEffect(() => {
     axios
-      .get(`https://mystorify-api.cyclic.app/api/categories/`)
+      .get(`${import.meta.env.VITE_SERVER_HOST}/api/categories/`)
       .then((res) => {
         console.log(res.data);
         setCategories(res.data);
@@ -52,7 +52,7 @@ const ListeCategories = () => {
       const id = categorieId;
       axios
         .delete(
-          `https://mystorify-api.cyclic.app/api/categories/${id}`
+          `${import.meta.env.VITE_SERVER_HOST}/api/categories/${id}`
         )
         .then((res) => {
           console.log(res.data);
@@ -73,7 +73,9 @@ const ListeCategories = () => {
       console.log(categorieId);
       axios
         .post(
-          `https://mystorify-api.cyclic.app/api/categories/sous/${id}`,
+          `${
+            import.meta.env.VITE_SERVER_HOST
+          }/api/categories/sous/${id}`,
           {
             categorieId,
           }
@@ -127,7 +129,7 @@ const ListeCategories = () => {
   const updateCate = (id) => {
     axios
       .patch(
-        `https://mystorify-api.cyclic.app/api/categories/${id}`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/categories/${id}`,
         {
           nom,
           desc,
@@ -143,7 +145,9 @@ const ListeCategories = () => {
   const updateSousCate = (id) => {
     axios
       .patch(
-        `https://mystorify-api.cyclic.app/api/categories/sous/${id}`,
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/categories/sous/${id}`,
         {
           nom,
           desc,
@@ -159,11 +163,14 @@ const ListeCategories = () => {
   };
   const addSousCate = () => {
     axios
-      .post(`https://mystorify-api.cyclic.app/api/categories/sous/`, {
-        nomAdd,
-        descAdd,
-        categorieId,
-      })
+      .post(
+        `${import.meta.env.VITE_SERVER_HOST}/api/categories/sous/`,
+        {
+          nomAdd,
+          descAdd,
+          categorieId,
+        }
+      )
 
       .then((res) => {
         console.log(res.data);

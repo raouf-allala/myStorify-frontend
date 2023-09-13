@@ -72,7 +72,7 @@ const authSlice = createSlice({
       localStorage.removeItem('user'); // Remove user data from local storage
       axios
         .post(
-          'https://mystorify-api.cyclic.app/api/users/logout',
+          `${import.meta.env.VITE_SERVER_HOST}/api/users/logout`,
           null,
           {
             withCredentials: true,
@@ -89,7 +89,7 @@ export const login =
     dispatch(authRequest());
     try {
       const response = await axios.post(
-        'https://mystorify-api.cyclic.app/api/users/login',
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/login`,
         { email, password },
         { withCredentials: true }
       );
@@ -111,7 +111,9 @@ export const verifyRemember = (rememberMe) => async (dispatch) => {
     console.log(email);
     try {
       const response = await axios.post(
-        'https://mystorify-api.cyclic.app/api/users/getRememberedUser',
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/users/getRememberedUser`,
         { email },
         {
           withCredentials: true,
@@ -134,7 +136,7 @@ export const googleLogin = (rememberMe) => async (dispatch) => {
   console.log(rememberMe);
   try {
     const response = await axios.get(
-      'https://mystorify-api.cyclic.app/api/users/googleLogin',
+      `${import.meta.env.VITE_SERVER_HOST}/api/users/googleLogin`,
       {
         withCredentials: true,
       }
@@ -174,7 +176,7 @@ export const loadUser = () => async (dispatch) => {
 //       console.log(utilisateurId);
 //       console.log(code);
 //       const response = await axios.post(
-//         'https://mystorify-api.cyclic.app/api/users/credit',
+//         'mystorify-api.cyclic.app/api/users/credit',
 //         { code, utilisateurId },
 //         { withCredentials: true }
 //       );
@@ -192,7 +194,7 @@ export const rechargerCredit =
   async (dispatch) => {
     try {
       const response = await axios.patch(
-        'https://mystorify-api.cyclic.app/api/users/credit',
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/credit`,
         { code, utilisateurId },
         { withCredentials: true }
       );

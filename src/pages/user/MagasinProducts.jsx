@@ -15,14 +15,18 @@ const MagasinProducts = () => {
     window.scrollTo({ top: 0 });
     axios
       .get(
-        `https://mystorify-api.cyclic.app/api/magasins/valide/${params.id}`
+        `${import.meta.env.VITE_SERVER_HOST}/api/magasins/valide/${
+          params.id
+        }`
       )
       .then((res) => {
         SetMagasin(res.data);
       });
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/produits/user/magasin/${params.id}`
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/produits/user/magasin/${params.id}`
       )
       .then((res) => {
         setProducts(res.data);

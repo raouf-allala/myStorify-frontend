@@ -14,12 +14,12 @@ const Magasins = () => {
   const [magasins, setMagasins] = useState([]);
   useEffect(() => {
     axios
-      .get('https://mystorify-api.cyclic.app/api/categories')
+      .get(`${import.meta.env.VITE_SERVER_HOST}/api/categories`)
       .then((res) => {
         setCategories(res.data);
       });
     axios
-      .get('https://mystorify-api.cyclic.app/api/magasins/valide')
+      .get(`${import.meta.env.VITE_SERVER_HOST}/api/magasins/valide`)
       .then((res) => {
         setMagasins(res.data);
       });

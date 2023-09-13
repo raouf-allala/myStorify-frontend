@@ -51,7 +51,9 @@ const AdminEditProduct = () => {
   useEffect(() => {
     axios
       .get(
-        `https://mystorify-api.cyclic.app/api/produits/${productId}`
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/produits/${productId}`
       )
       .then((res) => {
         console.log(res.data);
@@ -79,7 +81,9 @@ const AdminEditProduct = () => {
     if (deletedProduct === true) {
       axios
         .delete(
-          `https://mystorify-api.cyclic.app/api/produits/${product.id}`
+          `${import.meta.env.VITE_SERVER_HOST}/api/produits/${
+            product.id
+          }`
         )
         .then((res) => {
           console.log(res);
@@ -227,7 +231,9 @@ const AdminEditProduct = () => {
 
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/produits/update/${productId}`,
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/produits/update/${productId}`,
         produit
       )
       .then((res) => {

@@ -63,7 +63,10 @@ const DemanderMagasin = () => {
     };
     console.log(magasin);
     axios
-      .post('https://mystorify-api.cyclic.app/api/magasins', magasin)
+      .post(
+        `${import.meta.env.VITE_SERVER_HOST}/api/magasins`,
+        magasin
+      )
       .then((res) => {
         console.log(res);
       })

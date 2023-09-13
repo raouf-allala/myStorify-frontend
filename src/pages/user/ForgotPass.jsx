@@ -23,7 +23,7 @@ const ForgotPass = () => {
   const handleSubmit = () => {
     axios
       .post(
-        'https://mystorify-api.cyclic.app/api/users/forgotPass',
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/forgotPass`,
         { email },
         {
           withCredentials: true,

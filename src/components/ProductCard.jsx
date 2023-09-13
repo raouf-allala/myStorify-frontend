@@ -16,9 +16,12 @@ const ProductCard = ({ product, forceUpdate }) => {
   useEffect(() => {
     if (isAuthenticated) {
       axios
-        .get('https://mystorify-api.cyclic.app/api/produits/user', {
-          withCredentials: true,
-        })
+        .get(
+          `${import.meta.env.VITE_SERVER_HOST}/api/produits/user`,
+          {
+            withCredentials: true,
+          }
+        )
         .then((res) => {
           setWishlist(res.data);
         });
@@ -51,7 +54,9 @@ const ProductCard = ({ product, forceUpdate }) => {
   const handleRemoveWishlist = () => {
     axios
       .delete(
-        `https://mystorify-api.cyclic.app/api/produits/user/${wishlistId}`,
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/produits/user/${wishlistId}`,
         {
           withCredentials: true,
         }
@@ -71,7 +76,7 @@ const ProductCard = ({ product, forceUpdate }) => {
     if (isAuthenticated) {
       axios
         .post(
-          `https://mystorify-api.cyclic.app/api/produits/user`,
+          `${import.meta.env.VITE_SERVER_HOST}/api/produits/user`,
           { produitId: product?.id },
           { withCredentials: true }
         )

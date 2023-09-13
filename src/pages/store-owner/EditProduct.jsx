@@ -66,7 +66,9 @@ const EditProduct = () => {
     if (deletedProduct === true) {
       axios
         .delete(
-          `https://mystorify-api.cyclic.app/api/produits/${product.id}`
+          `${import.meta.env.VITE_SERVER_HOST}/api/produits/${
+            product.id
+          }`
         )
         .then((res) => {
           console.log(res);
@@ -78,7 +80,9 @@ const EditProduct = () => {
     } else if (deletedDiscount === true) {
       axios
         .delete(
-          `https://mystorify-api.cyclic.app/api/produits/discount/${product.id}`
+          `${
+            import.meta.env.VITE_SERVER_HOST
+          }/api/produits/discount/${product.id}`
         )
         .then((res) => {
           console.log(res);
@@ -96,7 +100,9 @@ const EditProduct = () => {
   useEffect(() => {
     axios
       .get(
-        `https://mystorify-api.cyclic.app/api/produits/${productId}`
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/produits/${productId}`
       )
       .then((res) => {
         console.log(res.data);
@@ -146,7 +152,7 @@ const EditProduct = () => {
     const produitId = product?.id;
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/produits/discount/`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/produits/discount/`,
         {
           dateDebut,
           dateFin,
@@ -288,7 +294,9 @@ const EditProduct = () => {
 
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/produits/update/${productId}`,
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/produits/update/${productId}`,
         produit
       )
       .then((res) => {

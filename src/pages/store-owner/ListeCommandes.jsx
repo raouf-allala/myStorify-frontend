@@ -31,7 +31,9 @@ const ListeCommandes = () => {
   useEffect(() => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/achat/magasin/${magasin.id}`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/achat/magasin/${
+          magasin.id
+        }`,
         {
           etat,
         }
@@ -54,7 +56,9 @@ const ListeCommandes = () => {
   const getNext = (take, skip, last) => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/achat/paged/${magasin.id}`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/achat/paged/${
+          magasin.id
+        }`,
         {
           take,
           skip,
@@ -77,7 +81,9 @@ const ListeCommandes = () => {
   const getPrev = (take, skip, last) => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/achat/paged/${magasin.id}`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/achat/paged/${
+          magasin.id
+        }`,
         {
           take,
           skip,

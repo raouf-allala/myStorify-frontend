@@ -44,13 +44,18 @@ const Home = () => {
   const [discounts, setDiscounts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [topProducts, setTopProducts] = useState();
+  //       loading states
+
+  const [catsIsLoading, setCatsIsLoading] = useState(false);
   useEffect(() => {
     if (update === 'true') {
       const id = user.id;
       console.log(id);
       axios
         .get(
-          `https://mystorify-api.cyclic.app/api/users/dash/admin/${id}`
+          `${
+            import.meta.env.VITE_SERVER_HOST
+          }/api/users/dash/admin/${id}`
         )
         .then((res) => {
           console.log(res.data);
@@ -58,23 +63,25 @@ const Home = () => {
         });
     }
     axios
-      .get('https://mystorify-api.cyclic.app/api/produits')
+      .get(`${import.meta.env.VITE_SERVER_HOST}/api/produits`)
       .then((res) => {
         setRandomProducts(res.data);
       });
     axios
-      .get('https://mystorify-api.cyclic.app/api/categories')
+      .get(`${import.meta.env.VITE_SERVER_HOST}/api/categories`)
       .then((res) => {
         console.log(res.data);
         setCategories(res.data);
       });
     axios
-      .get('https://mystorify-api.cyclic.app/api/produits/discounts')
+      .get(
+        `${import.meta.env.VITE_SERVER_HOST}/api/produits/discounts`
+      )
       .then((res) => {
         setDiscounts(res.data);
       });
     axios
-      .get('https://mystorify-api.cyclic.app/api/produits/top')
+      .get(`${import.meta.env.VITE_SERVER_HOST}/api/produits/top`)
       .then((res) => {
         setTopProducts(res.data);
       });

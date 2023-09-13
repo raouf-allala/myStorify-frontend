@@ -47,7 +47,7 @@ const CompleteInfo = () => {
   const handleUpdate = () => {
     axios
       .post(
-        'https://mystorify-api.cyclic.app/api/users/completeInfo',
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/completeInfo`,
         { email, telephone, adresse, wilaya },
         {
           withCredentials: true,

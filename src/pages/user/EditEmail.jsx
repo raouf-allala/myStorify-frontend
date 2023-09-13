@@ -36,7 +36,9 @@ const EditEmail = () => {
     else
       axios
         .post(
-          'https://mystorify-api.cyclic.app/api/users/verifyEditEmail',
+          `${
+            import.meta.env.VITE_SERVER_HOST
+          }/api/users/verifyEditEmail`,
           { nom, newEmail },
           {
             withCredentials: true,

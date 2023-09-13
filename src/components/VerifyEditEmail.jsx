@@ -11,7 +11,7 @@ const VerifyEditEmail = () => {
   useEffect(() => {
     axios
       .patch(
-        'https://mystorify-api.cyclic.app/api/users/updateEmail',
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/updateEmail`,
         { newEmail },
         {
           withCredentials: true,

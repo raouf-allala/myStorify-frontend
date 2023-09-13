@@ -172,7 +172,10 @@ const AddProduct = () => {
     };
     console.log(produit);
     axios
-      .post('https://mystorify-api.cyclic.app/api/produits/', produit)
+      .post(
+        `${import.meta.env.VITE_SERVER_HOST}/api/produits/`,
+        produit
+      )
       .then((res) => {
         console.log(res);
         navigate(`/dashboard/magasin/${magasin.id}/products`);

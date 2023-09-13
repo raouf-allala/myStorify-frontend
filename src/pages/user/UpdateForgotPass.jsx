@@ -45,7 +45,9 @@ const UpdateForgotPass = () => {
     } else {
       axios
         .patch(
-          'https://mystorify-api.cyclic.app/api/users/updateForgotPass',
+          `${
+            import.meta.env.VITE_SERVER_HOST
+          }/api/users/updateForgotPass`,
           { password },
           {
             withCredentials: true,

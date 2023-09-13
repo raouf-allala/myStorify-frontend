@@ -43,7 +43,7 @@ const DashAdminSides = () => {
   const [magasinCount, setMagasinCount] = useState();
   useEffect(() => {
     axios
-      .get('https://mystorify-api.cyclic.app/api/users/stats')
+      .get(`${import.meta.env.VITE_SERVER_HOST}/api/users/stats`)
       .then((res) => {
         console.log(res.data);
         setUserCount(res.data.usersCount);

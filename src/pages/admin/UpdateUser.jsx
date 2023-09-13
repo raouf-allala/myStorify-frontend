@@ -67,7 +67,7 @@ const UpdateUser = () => {
     if (deletedUser === true) {
       axios
         .delete(
-          `https://mystorify-api.cyclic.app/api/users/delete/${id}`
+          `${import.meta.env.VITE_SERVER_HOST}/api/users/delete/${id}`
         )
         .then((res) => {
           console.log(res);
@@ -81,7 +81,9 @@ const UpdateUser = () => {
   useEffect(() => {
     axios
       .get(
-        `https://mystorify-api.cyclic.app/api/users/dash/admin/${id}`
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/users/dash/admin/${id}`
       )
       .then((res) => {
         console.log(res.data);
@@ -110,7 +112,7 @@ const UpdateUser = () => {
     };
     axios
       .patch(
-        'https://mystorify-api.cyclic.app/api/users/admin/update',
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/admin/update`,
         updatedUser,
         {
           withCredentials: true,

@@ -60,7 +60,7 @@ const UpdateAdmin = () => {
     const id = user?.id;
     axios
       .patch(
-        'https://mystorify-api.cyclic.app/api/users/dash/admin/',
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/dash/admin/`,
         {
           nom,
           prenom,

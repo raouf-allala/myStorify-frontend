@@ -20,7 +20,7 @@ const Products = () => {
     window.scrollTo({ top: true });
     axios
       .post(
-        'https://mystorify-api.cyclic.app/api/produits/categorie',
+        `${import.meta.env.VITE_SERVER_HOST}/api/produits/categorie`,
         {
           sous_CategorieId: category,
         }

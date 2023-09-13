@@ -32,7 +32,9 @@ const DashProducts = () => {
   useEffect(() => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/produits/dash/magasin/${magasin.id}`,
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/produits/dash/magasin/${magasin.id}`,
         {
           prixOrder,
           dateOrder,
@@ -59,7 +61,9 @@ const DashProducts = () => {
   const getNext = (take, skip, last) => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/produits/paged/${magasin.id}`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/produits/paged/${
+          magasin.id
+        }`,
         {
           take,
           skip,
@@ -84,7 +88,9 @@ const DashProducts = () => {
   const getPrev = (take, skip, last) => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/produits/paged/${magasin.id}`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/produits/paged/${
+          magasin.id
+        }`,
         {
           take,
           skip,

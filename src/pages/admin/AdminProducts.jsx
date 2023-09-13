@@ -32,7 +32,9 @@ const AdminProducts = () => {
   useEffect(() => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/produits/dash/admin/`,
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/produits/dash/admin/`,
         {
           prixOrder,
           dateOrder,
@@ -55,7 +57,7 @@ const AdminProducts = () => {
   }, [prixOrder, dateOrder, quantityOrder, categorieId, nom]);
   useEffect(() => {
     axios
-      .get(`https://mystorify-api.cyclic.app/api/categories/`)
+      .get(`${import.meta.env.VITE_SERVER_HOST}/api/categories/`)
       .then((res) => {
         console.log(res.data);
         setCategories(res.data);
@@ -65,7 +67,9 @@ const AdminProducts = () => {
   const getNext = (take, skip, last) => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/produits/admin/paged/`,
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/produits/admin/paged/`,
         {
           take,
           skip,
@@ -90,7 +94,9 @@ const AdminProducts = () => {
   const getPrev = (take, skip, last) => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/produits/admin/paged/`,
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/produits/admin/paged/`,
         {
           take,
           skip,

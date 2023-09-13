@@ -11,7 +11,7 @@ const AddCategorie = () => {
 
   const handleSubmit = () => {
     axios
-      .post('https://mystorify-api.cyclic.app/api/categories/', {
+      .post(`${import.meta.env.VITE_SERVER_HOST}/api/categories/`, {
         nom,
         desc,
       })

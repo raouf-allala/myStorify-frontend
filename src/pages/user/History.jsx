@@ -13,7 +13,9 @@ const History = () => {
   useEffect(() => {
     axios
       .get(
-        `https://mystorify-api.cyclic.app/api/achat/user/${user.id}`
+        `${import.meta.env.VITE_SERVER_HOST}/api/achat/user/${
+          user.id
+        }`
       )
       .then((res) => {
         console.log(res.data);

@@ -32,7 +32,7 @@ const ReportsList = () => {
 
   useEffect(() => {
     axios
-      .post(`https://mystorify-api.cyclic.app/api/users/reports`, {
+      .post(`${import.meta.env.VITE_SERVER_HOST}/api/users/reports`, {
         dateOrder,
         nom,
         type,
@@ -54,7 +54,7 @@ const ReportsList = () => {
   }, [dateOrder, , nom, type]);
   const getNext = (take, skip, last) => {
     axios
-      .post(`https://mystorify-api.cyclic.app/api/reports/paged`, {
+      .post(`${import.meta.env.VITE_SERVER_HOST}/api/reports/paged`, {
         take,
         skip,
         dateOrder,
@@ -74,13 +74,16 @@ const ReportsList = () => {
   };
   const getPrev = (take, skip, last) => {
     axios
-      .post(`https://mystorify-api.cyclic.app/api/reports/paged/`, {
-        take,
-        skip,
-        dateOrder,
-        nom,
-        type,
-      })
+      .post(
+        `${import.meta.env.VITE_SERVER_HOST}/api/reports/paged/`,
+        {
+          take,
+          skip,
+          dateOrder,
+          nom,
+          type,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setProducts(res.data);

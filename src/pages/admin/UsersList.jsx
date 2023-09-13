@@ -26,7 +26,7 @@ const UsersList = () => {
   useEffect(() => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/users/dash/admin/`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/dash/admin/`,
         {
           dateOrder,
           nom,
@@ -52,7 +52,9 @@ const UsersList = () => {
   const getNext = (take, skip, last) => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/produits/paged/${magasin.id}`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/produits/paged/${
+          magasin.id
+        }`,
         {
           take,
           skip,
@@ -75,7 +77,7 @@ const UsersList = () => {
   const getPrev = (take, skip, last) => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/users/admin/paged`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/admin/paged`,
         {
           take,
           skip,

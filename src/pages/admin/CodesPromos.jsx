@@ -16,7 +16,7 @@ const CodesPromos = () => {
   useEffect(() => {
     axios
       .get(
-        `https://mystorify-api.cyclic.app/api/magasins/codesPromos`
+        `${import.meta.env.VITE_SERVER_HOST}/api/magasins/codesPromos`
       )
       .then((res) => {
         console.log(res.data);
@@ -29,7 +29,9 @@ const CodesPromos = () => {
     if (deletedCode === true) {
       axios
         .delete(
-          `https://mystorify-api.cyclic.app/api/magasins/codesPromos/${id}`
+          `${
+            import.meta.env.VITE_SERVER_HOST
+          }/api/magasins/codesPromos/${id}`
         )
         .then((res) => {
           console.log(res);
@@ -44,7 +46,9 @@ const CodesPromos = () => {
   const addCode = () => {
     axios
       .post(
-        `https://mystorify-api.cyclic.app/api/magasins/codesPromos/add`,
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/magasins/codesPromos/add`,
         {
           code,
           dateFin,

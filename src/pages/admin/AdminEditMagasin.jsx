@@ -35,7 +35,9 @@ const AdminEditMagasin = () => {
   useEffect(() => {
     axios
       .get(
-        `https://mystorify-api.cyclic.app/api/magasins/${magasinId}`,
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/magasins/${magasinId}`,
         {
           withCredentials: true,
         }
@@ -54,7 +56,9 @@ const AdminEditMagasin = () => {
       console.log(magasin?.Utilisateur?.email);
       axios
         .post(
-          `https://mystorify-api.cyclic.app/api/magasins/delete/${magasinId}`,
+          `${
+            import.meta.env.VITE_SERVER_HOST
+          }/api/magasins/delete/${magasinId}`,
           {
             email,
           }
@@ -134,7 +138,9 @@ const AdminEditMagasin = () => {
     console.log(magasin?.Utilisateur?.email);
     axios
       .patch(
-        `https://mystorify-api.cyclic.app/api/magasins/valider/${magasin.id}`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/magasins/valider/${
+          magasin.id
+        }`,
         {
           email,
         }
@@ -151,7 +157,9 @@ const AdminEditMagasin = () => {
   const deleteDepot = (id) => {
     axios
       .delete(
-        `https://mystorify-api.cyclic.app/api/magasins/depot/delete/${id}`
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/magasins/depot/delete/${id}`
       )
       .then((res) => {
         console.log(res.data);
@@ -170,7 +178,9 @@ const AdminEditMagasin = () => {
 
     axios
       .patch(
-        `https://mystorify-api.cyclic.app/api/magasins/${magasin.id}`,
+        `${import.meta.env.VITE_SERVER_HOST}/api/magasins/${
+          magasin.id
+        }`,
         {
           nom,
           desc,

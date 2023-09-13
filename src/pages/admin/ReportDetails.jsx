@@ -13,7 +13,9 @@ const ReportDetails = () => {
   const [date, setDate] = useState();
   useEffect(() => {
     axios
-      .get(`https://mystorify-api.cyclic.app/api/users/reports/${id}`)
+      .get(
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/reports/${id}`
+      )
       .then((res) => {
         console.log(res.data);
         setReport(res.data);

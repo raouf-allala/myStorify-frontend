@@ -46,7 +46,9 @@ const UpdateAdminPass = () => {
     } else {
       axios
         .patch(
-          'https://mystorify-api.cyclic.app/api/users/dash/admin/password',
+          `${
+            import.meta.env.VITE_SERVER_HOST
+          }/api/users/dash/admin/password`,
           {
             oldPassword: currentPassword?.current?.value,
             newPassword: newPassword.current.value,

@@ -56,7 +56,7 @@ const SecurityProfile = () => {
     } else {
       axios
         .patch(
-          'https://mystorify-api.cyclic.app/api/users/password',
+          `${import.meta.env.VITE_SERVER_HOST}/api/users/password`,
           {
             oldPassword: currentPassword?.current?.value,
             newPassword: newPassword.current.value,

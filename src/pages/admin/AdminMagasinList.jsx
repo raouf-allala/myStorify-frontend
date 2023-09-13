@@ -33,7 +33,9 @@ const AdminMagasinList = () => {
   const [err, setErr] = useState();
   useEffect(() => {
     axios
-      .get(`https://mystorify-api.cyclic.app/api/categories/`)
+      .get(
+        `https://${import.meta.env.VITE_SERVER_HOST}/api/categories/`
+      )
       .then((res) => {
         console.log(res.data);
         setCategories(res.data);
@@ -42,12 +44,17 @@ const AdminMagasinList = () => {
   }, []);
   useEffect(() => {
     axios
-      .post(`https://mystorify-api.cyclic.app/api/magasins/dash`, {
-        dateOrder,
-        categorieId,
-        nom,
-        valide,
-      })
+      .post(
+        `https://${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/magasins/dash`,
+        {
+          dateOrder,
+          categorieId,
+          nom,
+          valide,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setMagasins(res.data.magasins);
@@ -66,13 +73,18 @@ const AdminMagasinList = () => {
   }, [dateOrder, categorieId, nom, valide]);
   const getNext = (take, skip, last) => {
     axios
-      .post(`https://mystorify-api.cyclic.app/api/magasins/paged/`, {
-        take,
-        skip,
-        dateOrder,
-        categorieId,
-        nom,
-      })
+      .post(
+        `https://${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/magasins/paged/`,
+        {
+          take,
+          skip,
+          dateOrder,
+          categorieId,
+          nom,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setMagasins(res.data);
@@ -86,13 +98,18 @@ const AdminMagasinList = () => {
   };
   const getPrev = (take, skip, last) => {
     axios
-      .post(`https://mystorify-api.cyclic.app/api/magasins/paged/`, {
-        take,
-        skip,
-        dateOrder,
-        categorieId,
-        nom,
-      })
+      .post(
+        `https://${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/magasins/paged/`,
+        {
+          take,
+          skip,
+          dateOrder,
+          categorieId,
+          nom,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setMagasins(res.data);

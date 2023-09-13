@@ -102,7 +102,9 @@ const DashView = () => {
   useEffect(() => {
     axios
       .get(
-        `https://mystorify-api.cyclic.app/api/produits/dashTop/${magasin.id}`
+        `${import.meta.env.VITE_SERVER_HOST}/api/produits/dashTop/${
+          magasin.id
+        }`
       )
       .then((res) => {
         console.log(res.data);

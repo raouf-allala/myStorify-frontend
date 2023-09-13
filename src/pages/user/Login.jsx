@@ -152,7 +152,9 @@ const Login = () => {
                   onClick={() => {
                     localStorage.setItem('rememberMe', rememberMe);
                   }}
-                  to="https://mystorify-api.cyclic.app/api/users/auth/google/"
+                  to={`${
+                    import.meta.env.VITE_SERVER_HOST
+                  }/api/users/auth/google/`}
                 >
                   <img src={Google} alt="" />
                   <p>Inscrire avec Google</p>

@@ -65,10 +65,13 @@ const Contact = () => {
   };
   const handleSubmit = () => {
     axios
-      .post('https://mystorify-api.cyclic.app/api/users/contactUs', {
-        nom,
-        desc,
-      })
+      .post(
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/contactUs`,
+        {
+          nom,
+          desc,
+        }
+      )
       .then((res) => {
         console.log(res.data);
         setDone(true);

@@ -18,7 +18,9 @@ const ChargeCredit = () => {
     e.preventDefault();
     axios
       .get(
-        `https://mystorify-api.cyclic.app/api/users/credit/${codeInput}`,
+        `${
+          import.meta.env.VITE_SERVER_HOST
+        }/api/users/credit/${codeInput}`,
         {
           withCredentials: true,
         }

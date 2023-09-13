@@ -94,7 +94,7 @@ const RegisterPage = () => {
 
     axios
       .post(
-        'https://mystorify-api.cyclic.app/api/users/registre',
+        `${import.meta.env.VITE_SERVER_HOST}/api/users/registre`,
         user,
         {
           withCredentials: true,
@@ -272,7 +272,9 @@ const RegisterPage = () => {
                   )}
                   <Link
                     className="btn btn-google"
-                    to="https://mystorify-api.cyclic.app/api/users/auth/google/"
+                    to={`${
+                      import.meta.env.VITE_SERVER_HOST
+                    }/api/users/auth/google/`}
                   >
                     <img src={Google} alt="" />
                     <p>Inscrire avec Google</p>
