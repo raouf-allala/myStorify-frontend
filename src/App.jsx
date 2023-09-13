@@ -56,12 +56,9 @@ import CIB from './pages/user/CIB';
 import History from './pages/user/History';
 import AllProducts from './pages/user/AllProducts';
 import Search from './pages/user/Search';
-const socket = io.connect(
-  `http://${import.meta.env.VITE_SERVER_HOST}`,
-  {
-    withCredentials: true,
-  }
-);
+const socket = io.connect(`${import.meta.env.VITE_SERVER_HOST}`, {
+  withCredentials: true,
+});
 
 function App() {
   return (
