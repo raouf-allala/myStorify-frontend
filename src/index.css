@@ -2790,3 +2790,32 @@ footer div ul a:hover{
     width: 60%;
   }
 }
+
+.skeleton{
+  background-color: rgb(221, 221, 221);
+
+}
+.skeleton.product-card-top{
+  width: 210px;
+  aspect-ratio: 1 / 1;
+}
+.skeleton.skeleton-title{
+  width: 60%;
+  height: 15px;
+  margin-top: 1.5em;
+  border-radius: 3px;
+}
+.skeleton.skeleton-text{
+  width: 40%;
+  height: 10px;
+  margin-top: 1em;
+  border-radius: 2px;
+}
+@keyframes pulse {
+  50%{
+    opacity: .5;
+  }
+}
+.animate-pulse{
+  animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite;
+}

@@ -30,6 +30,7 @@ import 'swiper/css';
 import { FaTshirt } from 'react-icons/fa';
 import { authUpdate } from '../../features/auth/authSlice';
 import { useDispatch } from 'react-redux';
+import ProductCardSkeleton from '../../components/ProductCardSkeleton';
 const Home = () => {
   const isAuthenticated = useSelector(
     (state) => state.auth.isAuthenticated
@@ -45,9 +46,15 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const [topProducts, setTopProducts] = useState();
   //       loading states
-
+  const [discountsLoading, setDiscountsLoading] = useState(false);
+  const [randomLoading, setRandomLoading] = useState(false);
+  const [topLoading, setTopLoading] = useState(false);
   const [catsIsLoading, setCatsIsLoading] = useState(false);
   useEffect(() => {
+    // set loading states to true
+    setDiscountsLoading(true);
+    setRandomLoading(true);
+    setTopLoading(true);
     if (update === 'true') {
       const id = user.id;
       console.log(id);
@@ -66,6 +73,7 @@ const Home = () => {
       .get(`${import.meta.env.VITE_SERVER_HOST}/api/produits`)
       .then((res) => {
         setRandomProducts(res.data);
+        setRandomLoading(false);
       });
     axios
       .get(`${import.meta.env.VITE_SERVER_HOST}/api/categories`)
@@ -79,11 +87,13 @@ const Home = () => {
       )
       .then((res) => {
         setDiscounts(res.data);
+        setDiscountsLoading(false);
       });
     axios
       .get(`${import.meta.env.VITE_SERVER_HOST}/api/produits/top`)
       .then((res) => {
         setTopProducts(res.data);
+        setTopLoading(false);
       });
   }, []);
   if (isAuthenticated) {
@@ -196,9 +206,18 @@ const Home = () => {
               </div>
               <h1>Les Soldes</h1>
               <div className="products-wrapper-grid">
-                {discounts.map((discount) => {
-                  return <ProductCard product={discount.produit} />;
-                })}
+                {discountsLoading === true ? (
+                  <>
+                    <ProductCardSkeleton />
+                    <ProductCardSkeleton />
+                    <ProductCardSkeleton />
+                    <ProductCardSkeleton />
+                  </>
+                ) : (
+                  discounts.map((discount) => {
+                    return <ProductCard product={discount.produit} />;
+                  })
+                )}
               </div>
               <div className="center">
                 <Link className="btn">Voir Tous Les Produits</Link>
@@ -254,13 +273,22 @@ const Home = () => {
               </div>
               <h1>Produits Les Plus Vendus</h1>
               <div className="products-wrapper-grid">
-                {topProducts && (
+                {topLoading === true ? (
                   <>
-                    <ProductCard product={topProducts[0]} />
-                    <ProductCard product={topProducts[1]} />
-                    <ProductCard product={topProducts[2]} />
-                    <ProductCard product={topProducts[3]} />
+                    <ProductCardSkeleton />
+                    <ProductCardSkeleton />
+                    <ProductCardSkeleton />
+                    <ProductCardSkeleton />
                   </>
+                ) : (
+                  topProducts && (
+                    <>
+                      <ProductCard product={topProducts[0]} />
+                      <ProductCard product={topProducts[1]} />
+                      <ProductCard product={topProducts[2]} />
+                      <ProductCard product={topProducts[3]} />
+                    </>
+                  )
                 )}
               </div>
             </div>
@@ -278,29 +306,41 @@ const Home = () => {
                 {/* {randomProducts.map((product) => {
                   return <ProductCard product={product} />;
                 })} */}
-                {randomProducts[0] && (
-                  <ProductCard product={randomProducts[0]} />
-                )}
-                {randomProducts[1] && (
-                  <ProductCard product={randomProducts[1]} />
-                )}
-                {randomProducts[2] && (
-                  <ProductCard product={randomProducts[2]} />
-                )}
-                {randomProducts[3] && (
-                  <ProductCard product={randomProducts[3]} />
-                )}
-                {randomProducts[4] && (
-                  <ProductCard product={randomProducts[4]} />
-                )}
-                {randomProducts[5] && (
-                  <ProductCard product={randomProducts[5]} />
-                )}
-                {randomProducts[6] && (
-                  <ProductCard product={randomProducts[6]} />
-                )}
-                {randomProducts[7] && (
-                  <ProductCard product={randomProducts[7]} />
+                {randomLoading === true ? (
+                  <>
+                    <ProductCardSkeleton />
+                    <ProductCardSkeleton />
+                    <ProductCardSkeleton />
+                    <ProductCardSkeleton />
+                  </>
+                ) : (
+                  <>
+                    {randomProducts[0] && (
+                      <ProductCard product={randomProducts[0]} />
+                    )}
+                    {randomProducts[1] && (
+                      <ProductCard product={randomProducts[1]} />
+                    )}
+                    {randomProducts[2] && (
+                      <ProductCard product={randomProducts[2]} />
+                    )}
+
+                    {randomProducts[3] && (
+                      <ProductCard product={randomProducts[3]} />
+                    )}
+                    {randomProducts[4] && (
+                      <ProductCard product={randomProducts[4]} />
+                    )}
+                    {randomProducts[5] && (
+                      <ProductCard product={randomProducts[5]} />
+                    )}
+                    {randomProducts[6] && (
+                      <ProductCard product={randomProducts[6]} />
+                    )}
+                    {randomProducts[7] && (
+                      <ProductCard product={randomProducts[7]} />
+                    )}
+                  </>
                 )}
               </div>
               <div className="center">
