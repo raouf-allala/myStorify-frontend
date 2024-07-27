@@ -55,13 +55,13 @@ const DashAdminSides = () => {
       });
   }, []);
 
-  if (isAuthenticated) {
-    if (user?.adresse !== undefined) {
-      return <Navigate to="/" />;
-    }
-  } else {
-    return <Navigate to="/login" />;
-  }
+  // if (isAuthenticated) {
+  //   if (user?.adresse !== undefined) {
+  //     return <Navigate to="/" />;
+  //   }
+  // } else {
+  //   return <Navigate to="/login" />;
+  // }
   return (
     <>
       <div className="dash-wrapper">
