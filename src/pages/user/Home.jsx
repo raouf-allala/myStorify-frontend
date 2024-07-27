@@ -112,27 +112,26 @@ const Home = () => {
                 transition={{ duration: 1.5, ease: 'easeInOut' }}
                 className="categories-list"
               >
-                {categories.map((categorie) => {
-                  return (
-                    <li>
-                      <Link>{categorie.nom}</Link>
-                      <MdOutlineKeyboardArrowRight />
-                      {categorie.Sous_Categorie.length !== 0 && (
-                        <div className="sous-cat-wrapper">
-                          {categorie.Sous_Categorie.map((cat) => {
-                            return (
-                              <Link
-                                to={`produits/catégorie/${cat.id}`}
-                              >
-                                {cat.nom}
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </li>
-                  );
-                })}
+                <li>
+                  <Link>Vêtements</Link>
+                  <MdOutlineKeyboardArrowRight />
+                  <div className="sous-cat-wrapper">
+                    <Link>Homme</Link>
+                    <Link>Femme</Link>
+                  </div>
+                </li>
+                <li>
+                  <Link>Electromenager</Link>
+                  <MdOutlineKeyboardArrowRight />
+                </li>
+                <li>
+                  <Link>Informatique</Link>
+                  <MdOutlineKeyboardArrowRight />
+                </li>
+                <li>
+                  <Link>Auto & Moto</Link>
+                  <MdOutlineKeyboardArrowRight />
+                </li>
               </motion.ul>
             </div>
             <motion.div
